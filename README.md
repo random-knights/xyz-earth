@@ -1,3 +1,24 @@
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <picture>
+    <img alt="Random Knights, XYZ — day/night themed header." src="https://github.com/random-knights/.github/raw/main/assets/ruok-earth.png">
+  </picture>
+<h3 align="center" style="color:#ff4124">Random Knights, XYZ</h3>
+  <p align="center">
+    rand0m.ai & randomly.engineering
+    <br />
+    <a href="https://github.com/random-knights/.github/blob/main/READMORE"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/random-knights/xyz">View Demo</a>
+    ·
+    <a href="https://github.com/random-knights/123/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/random-knights/123/issues">Request Feature</a>
+  </p>
+</div>
+
 # xyz-earth
 
 > Earth intelligence layer for [rand0m.ai](https://rand0m.ai)
