@@ -25,6 +25,14 @@
 
 Research, governance, and data for the living globe — how real environmental signals become animated, scored, and browsable planetary-health layers.
 
+<div align="center">
+
+[![rand0m earth2d — 2D wind globe preview](preview/earth2d-wind-globe.svg)](preview/earth2d-wind-globe.html)
+
+<sub><b>2D globe (<code>earth2d</code>) — wind layer.</b> Static preview · <a href="preview/earth2d-wind-globe.html"><b>open the interactive mock »</b></a> (drag to rotate). Illustrative wind field — not live data.</sub>
+
+</div>
+
 ---
 
 ## The living globe
