@@ -21,9 +21,13 @@
 
 # xyz-earth
 
-> Earth intelligence layer for [rand0m.ai](https://rand0m.ai)
+> The living globe for [rand0m.ai](https://rand0m.ai) — **keyless, open-source, clone-and-run.**
 
-Research, governance, and data for the living globe — how real environmental signals become animated, scored, and browsable planetary-health layers.
+A self-contained Flutter web app that renders Earth's real environmental signals
+as an animated globe with a **Planet Health Score**. It reads public rand0m.ai
+Storage over plain HTTPS and ships with bundled representative data, so it
+**always renders offline** — **no keys, no auth, no Firebase, no private
+dependencies.**
 
 <div align="center">
 
@@ -35,23 +39,68 @@ Research, governance, and data for the living globe — how real environmental s
 
 ---
 
-## The living globe
+## Run it
 
-rand0m shows Earth's health in real time. Wind flows over continents, sea-surface temperatures shift from the 1991–2020 baseline, wildfire hotspots pulse in 24-hour windows. Everything you see is:
+**Prerequisites:** the [Flutter SDK](https://docs.flutter.dev/get-started/install)
+(stable, Dart ≥ 3.6) and Chrome.
 
-- **Sourced** from open scientific datasets (NOAA, NASA, CAMS, GLAD, and more)
-- **Aggregated** — no individual tracking, ever
-- **Governed** — a named spec and community review before any layer enters the catalog
+```bash
+git clone https://github.com/random-knights/xyz-earth.git
+cd xyz-earth
+flutter pub get
+flutter run -d chrome
+```
 
-This repository is the public home for research, data-sourcing questions, methodology discussion, and layer requests.
+That's the whole setup. The globe boots from bundled representatives and upgrades
+to live data wherever a public rand0m.ai Storage object exists — there is nothing
+to configure and no secret to provide.
+
+Build a static bundle (e.g. to host or to attach to a Release):
+
+```bash
+flutter build web
+# output in build/web/
+```
+
+### What you can do
+
+- Toggle an **Animate** layer (wind / ocean currents / waves), a scalar
+  **Overlay** (SST, air quality, forest, …), and a **Points** layer (wildfires,
+  glaciers, power plants, …).
+- Read the **Planet Health Score** ring (global) and open the **History** panel
+  for the daily score over time.
+- **HD** raises the flow-field particle budget; **Spin** auto-rotates the globe.
 
 ---
 
-## Earth Health Score — v0.6
+## How it stays keyless
 
-The globe surfaces a **Planet Health Score** — a single number per region and globally that blends nine Earth-system domains. It is an estimate, not a certified assessment. Every signal carries a confidence label.
+The viewer reads the public rand0m.ai Storage bucket directly:
 
-### Nine domains
+```
+https://storage.googleapis.com/randomknights-xyz.firebasestorage.app/<object>
+```
+
+- **Score:** `earth/score/health-score.json` · history `earth/score/health-history.json`
+- **Scalar grids** (`earth.scalarfield.v1`): `earth/<layer>/...-grid.json`
+- **Point sets** (`earth.pointset.v1`, identity-stripped): wildfire, biodiversity, …
+
+Each source tries the public live object and, on **any** failure (offline, a
+not-yet-deployed object, a non-public 403), falls back to the **bundled
+representative** asset under `assets/earth/`. The app never crashes and never
+blocks on auth. A `live-ready` manifest skips fetches for objects known to be
+undeployed, and every live fetch has a timeout.
+
+> The score math is **frozen at v0.6**. This app only reads and displays the
+> score document — it never recomputes or alters it.
+
+---
+
+## Planet Health Score — v0.6
+
+A single number per region and globally, blending nine Earth-system domains. It
+is an estimate, not a certified assessment; every signal carries a confidence
+label.
 
 | Domain | What it measures | Primary source |
 | --- | --- | --- |
@@ -59,47 +108,66 @@ The globe surfaces a **Planet Health Score** — a single number per region and 
 | **Fire** | Active hotspot burden, 24 h window | NASA FIRMS |
 | **Atmosphere** | Air-quality burden, AQI-weighted | CAMS |
 | **Ocean temperature** | SST anomaly vs 1991–2020 WMO baseline | NOAA OISST / Open-Meteo Marine |
-| **Ocean acidification** | pH trend stress signal | _(open for proposals — see Discussions)_ |
-| **Cryosphere** | Sea-ice extent and anomaly | _(expanding — see Discussions)_ |
-| **Biodiversity** | Species pressure and habitat integrity proxy | GBIF _(direct signal preferred — see Discussions)_ |
+| **Ocean acidification** | pH trend stress signal | _(open for proposals)_ |
+| **Cryosphere** | Sea-ice extent and anomaly | _(expanding)_ |
+| **Biodiversity** | Species pressure / habitat integrity proxy | GBIF |
 | **Conservation** | Protected-area coverage signal | IUCN / WDPA |
-| **Anthroposphere** | Human-pressure index (gHM-grounded; ratified v0.6) | Global Human Modification index |
+| **Anthroposphere** | Human-pressure index (gHM-grounded, v0.6) | Global Human Modification index |
 
-### Planetary-boundaries grounding
-
-Domains are anchored against **planetary boundary thresholds** (Rockström et al.) — the limits beyond which Earth systems risk crossing into qualitatively different states. Signals within a domain are averaged; each domain contributes once to the global score. Normalizers are locked at ratification (anchored), not floating with observed data ranges.
-
-### Anthroposphere — what changed in v0.6
-
-The human-pressure domain is now grounded on the **Global Human Modification (gHM)** index — a peer-reviewed geospatial synthesis of infrastructure, agriculture, and urban footprint — replacing the provisional representative grid used in earlier versions.
+Domains are anchored against **planetary boundary thresholds** (Rockström et al.).
+Signals within a domain are averaged; each domain contributes once to the global
+score. Normalizers are locked at ratification (anchored), not floating with
+observed ranges.
 
 ---
 
-## How a layer is born
+## Layer catalog
 
-```
-Public scientific source (open license)
-  → scheduled fetch / refresh job
-  → governed, aggregated, identity-free data object
-  → globe layer or score domain
-```
+The standalone viewer wires a curated subset of the catalog (ids match the
+renderer's slot maps):
 
-No individual tracking, callsigns, vessel names, or precise sensitive locations enter the pipeline at any stage. Identity suppression is a named, independently testable function — not a display-time filter.
+- **Animate (flow):** wind · ocean-currents · waves
+- **Overlay (scalar):** air-quality · particulates · sst · ssta · forest ·
+  human-modification · protected-areas · carbon _(more available in code:
+  chemistry, cape, dust-aod, misery-index, baa, tree-time, human-encroachment)_
+- **Points:** wildfires · biodiversity · glaciers · power-plants · flights ·
+  boats _(more in code: species-threatened, businesses-footprint, datacenters,
+  industrial-sites, protected-areas-points, extraction-sites, carbon-offset,
+  satellites)_
+
+---
+
+## Governance
+
+Everything you see is **aggregated** and **identity-free** by design:
+
+- No callsigns, vessel names, tail numbers, registrations, or personal
+  identifiers — ever. Identity suppression is a property of the data, not a
+  display-time filter.
+- No precise sensitive locations. Ambient mobility layers (flights, boats) are
+  decimated and rendered non-interactive (flow, not followable targets).
+- Open scientific sources only, each carrying its provider's license.
+
+Contributors must keep this bar — see [CONTRIBUTING.md](CONTRIBUTING.md). The
+`test/keyless_guard_test.dart` gate proves the tree stays free of secrets, auth
+SDKs, and private dependencies.
 
 ---
 
 ## Join the research
 
-[**Discussions →**](../../discussions)
-
-- 🌍 **How we score Earth's health** — v0.6 methodology, 9 domains, planetary-boundaries grounding
-- 📡 **What data we need** — layer requests, source candidates, license questions
-- 🌱 **AIEDS v1** — the open AI Energy Disclosure Standard powering the AI footprint chip
+[**Discussions →**](../../discussions) — score methodology, data-source
+proposals, license questions, and layer requests.
 
 ---
 
-## License
+## License & attribution
 
-Methodology and governance text: **CC BY 4.0**  
-Code (where present): see file headers  
-Source data: each layer carries the license of its upstream scientific provider
+- **Code:** see [`LICENSE`](LICENSE) (Random Knights, MIT-derived terms).
+- **Methodology & governance docs:** CC BY 4.0.
+- **Brand assets** (the rand0m logo/header, brand colours beyond the few inlined
+  UI tokens): **reserved** — see `LICENSE`. The app's runtime does not depend on
+  the brand logo.
+- **Upstream data & bundled third-party code:** each carries its provider's
+  license — see [`NOTICE`](NOTICE) (NOAA, NASA, CAMS, GLAD, IUCN/WDPA, Natural
+  Earth, gHM, WRI, d3/topojson, …).

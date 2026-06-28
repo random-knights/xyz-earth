@@ -1,0 +1,34 @@
+name: CI
+
+# The contributor gate: analyze + tests must be green. Mirrors the local gate in
+# CONTRIBUTING.md (including the keyless guard that proves no secrets / auth SDKs
+# / private deps crept in).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze (zero issues)
+        run: flutter analyze
+
+      - name: Test (includes keyless guard)
+        run: flutter test
+
+      - name: Build web (compile check)
+        run: flutter build web --no-tree-shake-icons
