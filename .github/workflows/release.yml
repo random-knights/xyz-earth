@@ -1,0 +1,54 @@
+name: Release
+
+# Packages an installable build so the open-source app stores (e.g. Komi Store,
+# which auto-discovers repos that publish installable Release binaries via the
+# GitHub Releases API) can pick it up.
+#
+# OWNER-GATED: this only fires when a maintainer pushes a version tag (v*). It is
+# committed but DORMANT — the extraction PR does not create a tag or publish any
+# Release. Pushing the first tag (and flipping the repo public) are owner steps.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write # create the Release + upload the asset
+
+jobs:
+  web-bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Gate (analyze + test)
+        run: |
+          flutter analyze
+          flutter test
+
+      - name: Build web bundle
+        run: flutter build web --no-tree-shake-icons --base-href "./"
+
+      - name: Zip web bundle
+        run: |
+          cd build/web
+          zip -r "../../xyz-earth-web-${{ github.ref_name }}.zip" .
+
+      - name: Publish Release with the web bundle
+        uses: softprops/action-gh-release@v2
+        with:
+          files: xyz-earth-web-${{ github.ref_name }}.zip
+          generate_release_notes: true
+
+  # Optional desktop/Android packaging can be added here behind the same tag
+  # gate (Windows .exe / macOS .dmg / Linux AppImage / Android .apk) once the
+  # owner decides which platforms to publish. Web is the primary target.

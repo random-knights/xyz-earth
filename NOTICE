@@ -1,0 +1,72 @@
+xyz-earth — NOTICE
+==================
+
+This product bundles and/or reads data and code from third parties. Each item
+below keeps the license of its upstream provider. The xyz-earth application code
+itself is licensed under LICENSE (Random Knights, MIT-derived code terms); the
+rand0m brand assets are reserved (see LICENSE).
+
+The standalone viewer is KEYLESS: it reads public rand0m.ai Storage over plain
+HTTPS and falls back to the bundled representative data below. No Firebase SDK,
+no auth, no API keys.
+
+
+Base-map cartography
+--------------------
+- Natural Earth (PUBLIC DOMAIN) — https://www.naturalearthdata.com/
+  Coastlines, admin-0 boundary lines, land polygons, rivers, lakes
+  (ne_110m_*, ne_50m_rivers_lake_centerlines). Distributed via the public-domain
+  nvkelso/natural-earth-vector project. Attribution given as courtesy.
+- world-atlas (Natural Earth, PUBLIC DOMAIN) — https://github.com/topojson/world-atlas
+  countries-110m / land-110m TopoJSON used by the earth2d renderer for the land
+  fill + country borders (with a jsDelivr CDN copy as last-resort fallback).
+- Land/sea masks (assets/earth/mask/*) are rasterized from Natural Earth land
+  polygons — same public-domain source/license.
+
+Earth-system data sources (live layers + representative grids)
+--------------------------------------------------------------
+The Planet Health Score domains and globe layers are derived from open
+scientific datasets. Each carries its provider's license; the representative
+grids bundled here are coarsened/derived snapshots for offline rendering.
+
+- NOAA OISST V2.1 / Coral Reef Watch — sea-surface temperature, anomaly,
+  bleaching alert area (U.S. Government work, open).
+- NASA FIRMS — active fire / thermal anomalies (open).
+- CAMS (Copernicus Atmosphere Monitoring Service) — particulates (PM2.5),
+  NO2, dust AOD (Copernicus open license).
+- GLAD / Hansen Global Forest Change (VCF5KYR) — tree-cover / forest loss
+  (CC BY 4.0).
+- Open-Meteo / Open-Meteo Marine — supporting meteorological + marine fields
+  (CC BY 4.0).
+- NOAA GFS — wind, CAPE, apparent-temperature inputs (U.S. Government work, open).
+- IUCN / WDPA — protected-area coverage (WDPA terms; non-commercial-sensitive
+  attributes are NOT surfaced — coverage signal only).
+- GBIF — biodiversity occurrence signal (CC BY-NC for derived clustered points).
+- Global Human Modification (gHM) index — human-pressure domain (CC BY 4.0).
+- WRI Global Power Plant Database v1.3.0 — power-plant points (CC BY 4.0).
+- Maus et al. global mining polygons v2 (PANGAEA) — extraction-site points
+  (CC BY 4.0).
+- Climate TRACE — industrial-site / business-footprint emitters (CC BY 4.0).
+- PeeringDB — data-center facility points (open / CC-BY-style).
+- WGMS — glacier summary (open, attribution).
+- Berkeley Carbon Trading Project (VCM registry) — carbon-offset project points.
+
+Bundled vendored JavaScript (web/earth2d/vendor)
+------------------------------------------------
+- d3 (d3.min.js) — Mike Bostock. ISC License. https://d3js.org/
+- topojson-client (topojson-client.min.js) — Mike Bostock. ISC License.
+  https://github.com/topojson/topojson-client
+
+Inlined code slices
+-------------------
+- lib/theme/app_colors.dart inlines five colour constants (green, kitt,
+  textLight, cardDark, cardPurp) from the private rand0m `rk_branding` package,
+  so the open viewer builds with no private dependency. The rand0m brand
+  identity and the full palette remain reserved.
+
+Identity / governance
+---------------------
+All point and flow data shown is aggregated and identity-stripped: no callsigns,
+vessel names, registrations, or precise sensitive locations. Ambient mobility
+layers (flights/boats) are decimated and non-interactive. See CONTRIBUTING.md
+and the README "Governance" section for the bar contributors must keep.

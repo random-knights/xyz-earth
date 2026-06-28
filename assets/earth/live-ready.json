@@ -1,0 +1,10 @@
+{
+  "schema": "earth.liveready.v1",
+  "note": "EXCLUDE list of Earth live-grid objects NOT yet deployed (refresher pending). The client SKIPS the live fetch for these and uses the bundled representative directly — no console 403. Everything else is fetched normally (fail-open). Remove a path here (and ship) once its refresher is deployed, OR set checkStorage:true and maintain earth/manifest/live-ready.json in Storage for ship-free updates. Seeded 2026-06-20 by probing public Storage (only wind + BAA were 403). Re-probed 2026-06-26: dust-aod live grid now deployed (vintage 2026-06-23) so it was CLEARED from this list — the overlay was blank because it was gated here AND its representative asset was unbundled (pubspec). wind also CLEARED 2026-06-26 (live, gfs-20260626 — owner-confirmed); baa/power-plants/extraction still 403 (correctly gated).",
+  "checkStorage": false,
+  "notReady": [
+    "earth/baa/baa-grid.json",
+    "earth/power-plants/power-plant-points.json",
+    "earth/extraction/extraction-points.json"
+  ]
+}

@@ -1,0 +1,47 @@
+name: xyz_earth
+description: "Living globe + Planet Health Score — a keyless, open-source Earth viewer for rand0m.ai."
+publish_to: "none"
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.6.0
+
+# KEYLESS BY DESIGN. Public packages only — no Firebase SDK, no auth, no envied,
+# no private git deps. The viewer reads public rand0m.ai Storage over plain HTTPS
+# and falls back to bundled representative assets. If you add a dependency, it
+# must come from pub.dev.
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.1 # public Storage GET (live layer/score reads)
+  fl_chart: ^1.1.1 # health-history line chart
+  web: ^1.1.1 # dart:js_interop bindings for the earth2d JS renderer
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    # 2D-globe base vectors (Natural Earth via world-atlas, public domain) +
+    # land/sea masks — bundled so coastlines/borders ALWAYS render (no CDN need).
+    - assets/earth/vector/
+    - assets/earth/mask/
+    # Representative scalar grids (earth.scalarfield.v1) — offline/keyless fallback.
+    - assets/earth/scalar/
+    # Representative flow fields (wind / ocean currents / waves).
+    - assets/earth/wind/
+    - assets/earth/ocean/
+    - assets/earth/waves/
+    # Representative + clustered point sets (earth.pointset.v1, identity-stripped).
+    - assets/earth/points/
+    # Curated satellite TLE set (Space mode).
+    - assets/earth/satellites/
+    # Planet Health Score representative (frozen v0.6 read-only display).
+    - assets/earth/score/
+    # Live-ready manifest (which layers have a live object on the public bucket).
+    - assets/earth/live-ready.json
