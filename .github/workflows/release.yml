@@ -35,8 +35,14 @@ jobs:
           flutter analyze
           flutter test
 
-      - name: Build web bundle
-        run: flutter build web --no-tree-shake-icons --base-href "./"
+      - name: Build web bundle (path-independent)
+        run: |
+          flutter build web --no-tree-shake-icons
+          # Make the bundle runnable when unzipped or served from any sub-path:
+          # rewrite the built index.html to a RELATIVE <base href>. Flutter's
+          # build-time --base-href flag only accepts absolute paths (must start
+          # and end with "/"), so we patch the emitted HTML instead.
+          sed -i 's|<base href="/">|<base href="">|' build/web/index.html
 
       - name: Zip web bundle
         run: |
