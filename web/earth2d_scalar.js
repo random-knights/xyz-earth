@@ -271,6 +271,20 @@
     return l;
   }
 
+  // Identity key for the inverse lattice: it depends ONLY on the projection's
+  // rotation / scale / translate plus the canvas size + step. Rounded so float
+  // churn on an identical view doesn't defeat the cache. When this key is
+  // unchanged the lattice can be reused verbatim — skipping the ~1000 invert()
+  // calls — even though the heatmap data/palette may have changed.
+  function inverseGridKey(projection, w, h, step) {
+    var r = projection.rotate ? projection.rotate() : [0, 0, 0];
+    var s = projection.scale ? projection.scale() : 1;
+    var t = projection.translate ? projection.translate() : [0, 0];
+    return r[0].toFixed(2) + ',' + r[1].toFixed(2) + ',' + ((r[2] || 0)).toFixed(2) +
+      '|' + s.toFixed(2) + '|' + t[0].toFixed(1) + ',' + t[1].toFixed(1) +
+      '|' + w + 'x' + h + '|' + step;
+  }
+
   // Build the coarse inverse lattice for a projection over a w x h canvas.
   function buildInverseGrid(projection, w, h, step) {
     var cols = Math.ceil(w / step) + 1;
@@ -325,9 +339,14 @@
     // CONT_ALPHA_GLOBAL so the full-canvas fill doesn't blanket.
     var contAlpha = (domain === 'global') ? CONT_ALPHA_GLOBAL : CONT_ALPHA;
 
-    var cache = opts.cache && opts.cache.step === step &&
-      opts.cache.cols === Math.ceil(w / step) + 1
+    // Reuse the passed lattice ONLY when its identity key matches the current
+    // projection/rotation/scale + canvas + step; otherwise rebuild it (the single
+    // ~1000-invert pass). After a rotation the key differs → rebuild once; a
+    // rebuild at the SAME view (data/palette change) skips the inverts entirely.
+    var key = inverseGridKey(projection, w, h, step);
+    var cache = (opts.cache && opts.cache.key === key)
       ? opts.cache : buildInverseGrid(projection, w, h, step);
+    cache.key = key;
     var cols = cache.cols, lon = cache.lon, lat = cache.lat, ok = cache.ok;
 
     var img = ctx.createImageData(w, h);

@@ -136,11 +136,13 @@
 
   // Geometry changed (projection / rotation / new data): the scalar base + the
   // point layer must be re-rasterised, and a repaint scheduled. The scalar's
-  // inverse-projection lattice (fieldCache) is rotation-dependent, so it MUST be
-  // invalidated too — otherwise the heatmap renders against a frozen lattice and
-  // stays static while the graticule/coastline rotate (the rotate desync).
+  // inverse-projection lattice (fieldCache) is now KEYED on the projection /
+  // rotation / scale state inside renderField, so it self-invalidates when the
+  // rotation changes — no need to null it here. (Nulling forced a full lattice
+  // rebuild on EVERY geo tick, even rebuilds where the projection was unchanged;
+  // the key lets a settle-rebuild at an unchanged projection skip the inverts.)
   function markGeoDirty(h) {
-    h.dirty = true; h.scalarDirty = true; h.pointDirty = true; h.fieldCache = null;
+    h.dirty = true; h.scalarDirty = true; h.pointDirty = true;
   }
 
   function sizeCanvas(h) {
@@ -600,9 +602,24 @@
       h.flowReady = false; h.flowFadeStart = 0;
       h.dirty = true; // recomposite so the flow is dropped from the frame
     }
-    // buildScalarBase clears scalarDirty on success (and flags a repaint); on a
-    // mask-wait it returns false so we keep scalarDirty set and retry next frame.
-    if (h.scalarDirty && buildScalarBase(h)) { h.scalarDirty = false; h.dirty = true; }
+    // SCALAR PAUSE (parity with the flow layer above): rebuilding the heatmap
+    // re-runs ~1000 inverse-projection samples — far too costly to run on every
+    // rotation frame (this was the ~1s/frame spin). While motion is in flight
+    // (easing / drag / spin / pre-settle hold) HIDE the scalar: clear its
+    // offscreen + drop scalarReady so a stale, now-misaligned raster is never
+    // composited. The base sphere + coastline + score ring keep rendering (cheap).
+    // Rebuild the heatmap exactly ONCE when motion settles — scalarDirty is still
+    // set from the last geo tick, so the settle frame picks it up. On a mask-wait
+    // buildScalarBase returns false, leaving scalarDirty set to retry next frame.
+    if (h.scalarDirty) {
+      if (settled) {
+        if (buildScalarBase(h)) { h.scalarDirty = false; h.dirty = true; }
+      } else if (h.scalarReady) {
+        try { h.fctx.clearRect(0, 0, h.W, h.H); } catch (e) {/* ignore */}
+        h.scalarReady = false;
+        h.dirty = true; // recomposite so the heatmap drops out of the moving frame
+      }
+    }
     if (h.pointDirty) { buildPointLayer(h); h.pointDirty = false; }
     if (isAnimating(h, flowing, easing) || h.dirty) {
       // Crash-isolated: a throwing composite (e.g. a bad projection path) must
