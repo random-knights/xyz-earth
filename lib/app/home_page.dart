@@ -195,7 +195,7 @@ class _ScorePanel extends StatelessWidget {
             )
           else if (score != null)
             EarthGlobalScoreRing(
-              score: score!.global.score.round(),
+              score: score!.global.score,
               label: score!.label.isEmpty ? 'Global' : score!.label,
               isLive: score!.isLive,
             )

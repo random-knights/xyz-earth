@@ -17,29 +17,31 @@ import 'package:xyz_earth/theme/app_colors.dart';
 /// explainer box). Colours come from the rk_branding tokens; the arc colour is
 /// the health band so it reads honestly as the score moves.
 
-/// The 4-stop health-score ramp — the SINGLE source of truth shared by the
+/// The 5-stop health-score ramp — the SINGLE source of truth shared by the
 /// Globe rings AND the Data View, so the same value reads the same colour in
-/// BOTH views. red <34 · orange 34–50 · yellow 50–67 · green ≥67; neutral grey
-/// when unknown (null). Thresholds are tunable but MUST stay identical across
+/// BOTH views. red <35 · orange 35–50 · yellow 50–70 · green 70–90 · neon ≥90;
+/// neutral grey when unknown (null). Thresholds MUST stay identical across
 /// views (do not fork). Score hues are deliberately DISTINCT from the earth+
 /// FILTER palette (peach/purple/pink/blue/kitt) — and score-red is its own red,
 /// NEVER kitt, so a low score can never read as an active filter.
 abstract final class EarthScoreColors {
-  static const red = Color(0xFFDC3B2C); // <34 (dedicated red, NOT kitt #FF4124)
-  static const orange = Color(0xFFF2862F); // 34–50
-  static const yellow = Color(0xFFE6B73A); // 50–67
-  static const green = Color(0xFF5BA45F); // ≥67
+  static const red = Color(0xFFDC3B2C); // <35 (dedicated red, NOT kitt #FF4124)
+  static const orange = Color(0xFFF2862F); // 35–50
+  static const yellow = Color(0xFFE6B73A); // 50–70
+  static const green = Color(0xFF5BA45F); // 70–90
+  static const neon = Color.fromRGBO(105, 219, 136, 1); // ≥90
   static const unknown = Color(0xFF878D97); // null — neutral grey
 }
 
 /// Health-band accent for a 0–100 score (shared by both rings AND the Data View
 /// via [EarthScoreColors]). Accepts null → grey so one helper covers every call
-/// site (the non-null int rings, the nullable composite score in the Data View).
+/// site (the non-null double rings, the nullable composite score in the Data View).
 Color earthScoreBandColor(num? score) {
   if (score == null) return EarthScoreColors.unknown;
-  if (score >= 67) return EarthScoreColors.green;
+  if (score >= 90) return EarthScoreColors.neon;
+  if (score >= 70) return EarthScoreColors.green;
   if (score >= 50) return EarthScoreColors.yellow;
-  if (score >= 34) return EarthScoreColors.orange;
+  if (score >= 35) return EarthScoreColors.orange;
   return EarthScoreColors.red;
 }
 
@@ -62,7 +64,7 @@ class EarthGlobalScoreRing extends StatelessWidget {
     this.size = 116,
   });
 
-  final int score;
+  final double score;
   final String label;
   final VoidCallback? onInfoTap;
   final bool isLive;
@@ -89,7 +91,7 @@ class EarthGlobalScoreRing extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '$score',
+                    score.toStringAsFixed(1),
                     key: const Key('earth-global-score-value'),
                     style: TextStyle(
                       color: band,
@@ -132,7 +134,7 @@ class EarthRegionalScoreHalfRing extends StatelessWidget {
     this.width = 132,
   });
 
-  final int score;
+  final double score;
   final String label;
   final VoidCallback? onInfoTap;
   final bool isLive;
@@ -160,7 +162,7 @@ class EarthRegionalScoreHalfRing extends StatelessWidget {
               padding: EdgeInsets.only(top: h * 0.36),
               child: Center(
                 child: Text(
-                  '$score%',
+                  '${score.toStringAsFixed(1)}%',
                   key: const Key('earth-regional-score-value'),
                   style: TextStyle(
                     color: band,
@@ -203,9 +205,9 @@ class EarthDualRadialScoreWidget extends StatelessWidget {
     this.size = 128,
   });
 
-  final int globalScore;
+  final double globalScore;
   final String globalLabel;
-  final int regionalScore;
+  final double regionalScore;
   final String regionalLabel;
   final bool globalIsLive;
   final bool regionalIsLive;
@@ -295,7 +297,7 @@ class _EarthDualCenterValue extends StatelessWidget {
 
   final Key valueKey;
   final String tag;
-  final int score;
+  final double score;
   final Color color;
   final double fontSize;
 
@@ -316,7 +318,7 @@ class _EarthDualCenterValue extends StatelessWidget {
         ),
         SizedBox(width: fontSize * 0.18),
         Text(
-          '$score',
+          score.toStringAsFixed(1),
           key: valueKey,
           style: TextStyle(
             color: color,
