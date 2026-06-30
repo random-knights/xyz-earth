@@ -123,17 +123,13 @@ observed ranges.
 
 ## Layer catalog
 
-The standalone viewer wires a curated subset of the catalog (ids match the
-renderer's slot maps):
+Every globe filter — **Animate** (flow), **Overlay** (scalar value-ramps), and **Annotation** (point markers) — with its live status and the exact palette the renderer uses:
 
-- **Animate (flow):** wind · ocean-currents · waves
-- **Overlay (scalar):** air-quality · particulates · sst · ssta · forest ·
-  human-modification · protected-areas · carbon _(more available in code:
-  chemistry, cape, dust-aod, misery-index, baa, tree-time, human-encroachment)_
-- **Points:** wildfires · biodiversity · glaciers · power-plants · flights ·
-  boats _(more in code: species-threatened, businesses-footprint, datacenters,
-  industrial-sites, protected-areas-points, extraction-sites, carbon-offset,
-  satellites)_
+<div align="center">
+
+![Globe layer catalog](earth-layer-catalog.svg)
+
+</div>
 
 ---
 
