@@ -18,12 +18,12 @@ void main() {
       const MaterialApp(
         home: Scaffold(
           body: Center(
-            child: EarthGlobalScoreRing(score: 72, label: 'Global'),
+            child: EarthGlobalScoreRing(score: 72.0, label: 'Global'),
           ),
         ),
       ),
     );
-    expect(find.text('72'), findsOneWidget);
+    expect(find.text('72.0'), findsOneWidget);
     expect(find.text('Global'), findsOneWidget);
   });
 

@@ -268,7 +268,7 @@ class _EarthHealthHistoryRowState extends State<EarthHealthHistoryRow> {
         const SizedBox(height: 10),
         Text(
           'methodology v${_history.methodologyVersion.isEmpty ? '0.6' : _history.methodologyVersion} · '
-          'daily 06:10 UTC · bands red <34 · orange 34–50 · yellow 50–67 · green ≥67',
+          'daily 06:10 UTC · bands red <35 · orange 35–50 · yellow 50–70 · green 70–90 · neon ≥90',
           style: const TextStyle(color: Colors.white38, fontSize: 10.5, height: 1.4),
         ),
       ],
@@ -340,9 +340,9 @@ class _EarthHealthHistoryRowState extends State<EarthHealthHistoryRow> {
     final spots = <FlSpot>[
       for (var i = 0; i < series.length; i++) FlSpot(i.toDouble(), series[i].value),
     ];
-    // 4-stop score bands behind the line (reuse the gauge's band colours).
+    // 5-stop score bands behind the line (reuse the gauge's band colours).
     List<HorizontalRangeAnnotation> bands() => [
-          for (final b in const [[0.0, 34.0], [34.0, 50.0], [50.0, 67.0], [67.0, 100.0]])
+          for (final b in const [[0.0, 35.0], [35.0, 50.0], [50.0, 70.0], [70.0, 90.0], [90.0, 100.0]])
             HorizontalRangeAnnotation(
               y1: b[0],
               y2: b[1],
