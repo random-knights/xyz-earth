@@ -91,12 +91,12 @@ representative** asset under `assets/earth/`. The app never crashes and never
 blocks on auth. A `live-ready` manifest skips fetches for objects known to be
 undeployed, and every live fetch has a timeout.
 
-> The score math is **frozen at v0.6**. This app only reads and displays the
-> score document — it never recomputes or alters it.
+> The score math is **frozen at v0.7** (owner-ratified). This app only reads and
+> displays the score document — it never recomputes or alters it.
 
 ---
 
-## Planet Health Score — v0.6
+## Planet Health Score — v0.7
 
 A single number per region and globally, blending nine Earth-system domains. It
 is an estimate, not a certified assessment; every signal carries a confidence
@@ -112,12 +112,19 @@ label.
 | **Cryosphere** | Sea-ice extent and anomaly | _(expanding)_ |
 | **Biodiversity** | Species pressure / habitat integrity proxy | GBIF |
 | **Conservation** | Protected-area coverage signal | IUCN / WDPA |
-| **Anthroposphere** | Human-pressure index (gHM-grounded, v0.6) | Global Human Modification index |
+| **Anthroposphere** | Human-pressure index (gHM-grounded) | Global Human Modification index |
 
 Domains are anchored against **planetary boundary thresholds** (Rockström et al.).
 Signals within a domain are averaged; each domain contributes once to the global
 score. Normalizers are locked at ratification (anchored), not floating with
 observed ranges.
+
+v0.7 adds two honesty refinements: **protected-areas de-saturation** (coverage is
+scored on a saturating curve that treats the 30×30 target as a safe floor, not a
+perfect score) and a **humility ceiling** (every domain's health is softly
+compressed above 90 so no domain can ever read as a "solved" 100). The bundled
+representative asset mirrors the live v0.7 document and is guarded against
+methodology drift by `test/score_asset_drift_guard_test.dart`.
 
 ---
 
