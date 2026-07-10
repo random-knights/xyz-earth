@@ -4,7 +4,7 @@ xyz-earth — NOTICE
 This product bundles and/or reads data and code from third parties. Each item
 below keeps the license of its upstream provider. The xyz-earth application code
 itself is licensed under LICENSE (Random Knights, MIT-derived code terms); the
-rand0m brand assets are reserved (see LICENSE).
+rand0m brand assets are reserved; they are NOT covered by the MIT code license in LICENSE.
 
 The standalone viewer is KEYLESS: it reads public rand0m.ai Storage over plain
 HTTPS and falls back to the bundled representative data below. No Firebase SDK,

@@ -39,17 +39,18 @@ dependencies.**
 
 ---
 
-## Run it
+## Run it (60 seconds)
 
 **Prerequisites:** the [Flutter SDK](https://docs.flutter.dev/get-started/install)
 (stable, Dart ≥ 3.6) and Chrome.
 
+One command from a fresh clone:
+
 ```bash
-git clone https://github.com/random-knights/xyz-earth.git
-cd xyz-earth
-flutter pub get
-flutter run -d chrome
+git clone https://github.com/random-knights/xyz-earth.git && cd xyz-earth && flutter run -d chrome
 ```
+
+(`flutter run` fetches dependencies itself; no accounts, no keys, no `.env`.)
 
 That's the whole setup. The globe boots from bundled representatives and upgrades
 to live data wherever a public rand0m.ai Storage object exists — there is nothing
@@ -151,7 +152,8 @@ Everything you see is **aggregated** and **identity-free** by design:
   decimated and rendered non-interactive (flow, not followable targets).
 - Open scientific sources only, each carrying its provider's license.
 
-Contributors must keep this bar — see [CONTRIBUTING.md](CONTRIBUTING.md). The
+Contributors must keep this bar — see [CONTRIBUTING.md](CONTRIBUTING.md) and
+the [Code of Conduct](CODE_OF_CONDUCT.md). The
 `test/keyless_guard_test.dart` gate proves the tree stays free of secrets, auth
 SDKs, and private dependencies.
 
@@ -166,11 +168,11 @@ proposals, license questions, and layer requests.
 
 ## License & attribution
 
-- **Code:** see [`LICENSE`](LICENSE) (Random Knights, MIT-derived terms).
+- **Code:** [MIT](LICENSE).
 - **Methodology & governance docs:** CC BY 4.0.
 - **Brand assets** (the rand0m logo/header, brand colours beyond the few inlined
-  UI tokens): **reserved** — see `LICENSE`. The app's runtime does not depend on
-  the brand logo.
+  UI tokens): **reserved, not covered by the MIT code license** — see
+  [`NOTICE`](NOTICE). The app's runtime does not depend on the brand logo.
 - **Upstream data & bundled third-party code:** each carries its provider's
   license — see [`NOTICE`](NOTICE) (NOAA, NASA, CAMS, GLAD, IUCN/WDPA, Natural
   Earth, gHM, WRI, d3/topojson, …).
