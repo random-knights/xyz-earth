@@ -5,12 +5,14 @@ open-source** Earth viewer for [rand0m.ai](https://rand0m.ai): the `earth2d`
 canvas globe + the Planet Health Score, reading public rand0m.ai Storage with
 bundled representative fallbacks. No keys, no auth, no private dependencies.
 
+By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## Ways to contribute
 
 - **Propose a layer or data source** — open a [Discussion](../../discussions)
   with the dataset, its open license, spatial resolution, and update cadence.
 - **Fix a bug or polish the viewer** — open a PR (see the gate below).
-- **Improve the score methodology** — the score math is **frozen at v0.6** in
+- **Improve the score methodology** — the score math is **frozen at v0.7** in
   this repo (the viewer only *reads and displays* the score doc, never
   recomputes it). Methodology proposals go to Discussions; they land upstream.
 
