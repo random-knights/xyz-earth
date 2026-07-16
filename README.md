@@ -176,3 +176,9 @@ proposals, license questions, and layer requests.
 - **Upstream data & bundled third-party code:** each carries its provider's
   license — see [`NOTICE`](NOTICE) (NOAA, NASA, CAMS, GLAD, IUCN/WDPA, Natural
   Earth, gHM, WRI, d3/topojson, …).
+
+## Operating this repo
+
+- [RUNBOOK.md](RUNBOOK.md) - humans: how to ship a Release, roll back, why this
+  repo is keyless, what breaks and how to fix it.
+- [CODEX.md](CODEX.md) - agents: the rules that apply in this repo.
