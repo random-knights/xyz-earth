@@ -77,6 +77,11 @@
     // Light-blue throughout — glacier point markers (T1 E).
     ice: [
       [0.0, [120, 180, 230]], [0.5, [160, 210, 240]], [1.0, [210, 238, 252]]
+    ],
+    // Lime ramp - environmental-nonprofits point markers (light->base->deep,
+    // #D9F99D -> #84CC16 -> #3F6212; value = log10 annual revenue).
+    nonprofits: [
+      [0.0, [217, 249, 157]], [0.5, [132, 204, 22]], [1.0, [63, 98, 18]]
     ]
   };
 

@@ -233,6 +233,11 @@ class Earth2dGlobeView extends StatefulWidget {
     ),
     // Ambient satellite orbit bands + named satellites (Space mode).
     this.satellitesPointSource = const SatellitePointSetSource(),
+    // US environmental nonprofits (IRS BMF via Census ZCTA centroids). Static
+    // representative like datacenters - identity-free aggregate ZIP-area points.
+    this.environmentalNonprofitsPointSource = const StaticAssetPointSetSource(
+      assetPath: StaticAssetPointSetSource.environmentalNonprofitsAsset,
+    ),
   });
 
   /// Slice 3 composite slots (same ids the Cesium view takes). Flow slot
@@ -318,6 +323,7 @@ class Earth2dGlobeView extends StatefulWidget {
   final EarthPointSetSource protectedAreasPointsPointSource;
   final EarthPointSetSource powerPlantsPointSource;
   final EarthPointSetSource extractionSitesPointSource;
+  final EarthPointSetSource environmentalNonprofitsPointSource;
 
   @override
   State<Earth2dGlobeView> createState() => _Earth2dGlobeViewState();
@@ -384,6 +390,7 @@ class _Earth2dGlobeViewState extends State<Earth2dGlobeView> {
         'flights': widget.flightsPointSource,
         'boats': widget.boatsPointSource,
         'satellites': widget.satellitesPointSource,
+        'environmental-nonprofits': widget.environmentalNonprofitsPointSource,
       },
     );
     // Publish the scale-bar value scale immediately (chrome is independent of

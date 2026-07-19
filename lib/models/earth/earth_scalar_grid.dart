@@ -31,9 +31,10 @@ abstract final class EarthRendererPalettes {
   static const cyan = 'cyan'; // deep navy -> bright cyan (datacenters)
   static const storm = 'storm'; // calm blue -> green -> amber -> red -> magenta (CAPE instability)
   static const ice = 'ice'; // light-blue throughout (glacier point markers)
+  static const nonprofits = 'nonprofits'; // lime ramp (environmental-nonprofits points)
   static const all = {
     airQuality, thermal, fire, vegetation, magnitude, violet, teal, ember, cyan,
-    storm, ice,
+    storm, ice, nonprofits,
   };
 }
 
@@ -45,6 +46,8 @@ abstract final class EarthPointLayerDisplay {
   static const _palette = <String, String>{
     // Glaciers → light-blue dots.
     'glaciers': EarthRendererPalettes.ice,
+    // Environmental nonprofits (US, IRS BMF): lime ramp, value = log10 revenue.
+    'environmental-nonprofits': EarthRendererPalettes.nonprofits,
   };
   static const _shape = <String, String>{
     // Flights → triangle/arrow markers (boats already ride 'diamond' from data).
@@ -215,6 +218,12 @@ abstract final class EarthAnimatedLayerIds {
     // Ambient satellite orbit bands (LEO/MEO/GEO ground tracks) + named
     // satellites, propagated client-side from CelesTrak TLEs (Space mode).
     'satellites',
+    // US environmental nonprofits (IRS Exempt Organizations BMF located via US
+    // Census ZCTA Gazetteer ZIP centroids; value = log10 annual revenue USD).
+    // Bundled representative fallback for the keyless offline boot; the live
+    // upgrade reads the nonprofits ingest snapshot. Health/trend-neutral (no
+    // score signal). Organizations, not people.
+    'environmental-nonprofits',
   };
 
   static Set<String> get all => {...flow, ...scalar, ...point};

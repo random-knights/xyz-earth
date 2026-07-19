@@ -50,6 +50,12 @@ grids bundled here are coarsened/derived snapshots for offline rendering.
 - PeeringDB — data-center facility points (open / CC-BY-style).
 - WGMS — glacier summary (open, attribution).
 - Berkeley Carbon Trading Project (VCM registry) — carbon-offset project points.
+- IRS Exempt Organizations Business Master File (BMF) - US environmental
+  nonprofit organizations (U.S. Government work, public domain).
+- US Census Bureau ZCTA Gazetteer - ZIP-code-area centroids used to place the
+  nonprofit points (U.S. Government work, public domain). Attribution for both
+  is given as a courtesy; neither carries a share-alike obligation. Points are
+  aggregated to coarse ZIP-code areas (organizations, not people).
 
 Bundled vendored JavaScript (web/earth2d/vendor)
 ------------------------------------------------

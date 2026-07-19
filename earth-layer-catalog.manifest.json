@@ -1,0 +1,78 @@
+{
+  "_comment": [
+    "Machine-checkable twin of earth-layer-catalog.svg. The private app",
+    "(random-knights/xyz) is the UPSTREAM source of truth for the globe layer",
+    "set; this package (xyz-earth) mirrors it. test/layer_catalog_parity_guard_test.dart",
+    "enforces this manifest against the package's own EarthAnimatedLayerIds",
+    "registry, so a layer can never SILENTLY fall out of parity again (that is",
+    "how environmental-nonprofits fell behind).",
+    "",
+    "HOW TO KEEP IT CURRENT (same manual-sync model as the score drift guard):",
+    "when the app's EarthAnimatedLayerIds changes, update appRegistry below to",
+    "match. The guard then forces a decision: either add the layer to the",
+    "package (move it into represented + ship its asset/catalog) OR record it",
+    "explicitly in pendingPortFromApp with a reason. You cannot record an app",
+    "addition and stay green without doing one of the two - that is the point.",
+    "",
+    "The guard is keyless and reads only checked-in files (this repo is PUBLIC",
+    "and cannot reach the private app at CI time), so appRegistry is a pinned",
+    "mirror, not a live read."
+  ],
+  "appRegistrySource": "random-knights/xyz  lib/models/earth/earth_scalar_grid.dart  EarthAnimatedLayerIds",
+  "syncedFromAppAt": "2026-07-18",
+
+  "represented": {
+    "_note": "MUST equal this package's EarthAnimatedLayerIds (flow/scalar/point). The guard asserts set equality per slot.",
+    "flow": ["wind", "ocean-currents", "waves"],
+    "scalar": [
+      "air-quality", "particulates", "chemistry", "forest",
+      "human-encroachment", "human-modification", "sst", "ssta", "baa",
+      "protected-areas", "tree-time", "cape", "dust-aod", "misery-index"
+    ],
+    "point": [
+      "wildfires", "biodiversity-habitat", "glaciers", "carbon-offset-projects",
+      "species-threatened", "businesses-footprint", "datacenters",
+      "industrial-sites", "protected-areas-points", "power-plants",
+      "extraction-sites", "flights", "boats", "satellites",
+      "environmental-nonprofits"
+    ]
+  },
+
+  "pendingPortFromApp": [
+    {
+      "id": "wind-speed",
+      "slot": "scalar",
+      "reason": "Surface wind-speed scalar overlay (|u,v| km/h, storm palette) landed in the app. Not yet ported to xyz-earth: it needs a representative scalar grid asset, a different family from this PR's pointset work. Tracked here so the gap is loud, not silent.",
+      "trackedSince": "2026-07-18"
+    }
+  ],
+
+  "bundledPointAssets": {
+    "_note": "point layer id -> its bundled representative/clustered asset. The guard asserts every file exists (rename/delete a bundled asset -> red). satellites has no pointset file (client-propagated TLE orbits), so it is intentionally absent.",
+    "wildfires": "assets/earth/points/wildfire-representative-v1.json",
+    "biodiversity-habitat": "assets/earth/points/biodiversity-representative-v1.json",
+    "glaciers": "assets/earth/points/glaciers-representative-v1.json",
+    "carbon-offset-projects": "assets/earth/points/carbon-offset-clustered-v2026-04.json",
+    "species-threatened": "assets/earth/points/species-threatened-clustered-v1.json",
+    "businesses-footprint": "assets/earth/points/businesses-footprint-clustered-v1.json",
+    "datacenters": "assets/earth/points/datacenters-clustered-v1.json",
+    "industrial-sites": "assets/earth/points/industrial-sites-clustered-v1.json",
+    "protected-areas-points": "assets/earth/points/protected-areas-points-clustered-v1.json",
+    "power-plants": "assets/earth/points/power-plants-clustered-v1.json",
+    "extraction-sites": "assets/earth/points/extraction-sites-clustered-v1.json",
+    "flights": "assets/earth/points/flights-representative-v1.json",
+    "boats": "assets/earth/points/boats-representative-v1.json",
+    "environmental-nonprofits": "assets/earth/points/environmental-nonprofits-representative-v1.json"
+  },
+
+  "appRegistry": [
+    "air-quality", "baa", "biodiversity-habitat", "boats",
+    "businesses-footprint", "cape", "carbon-offset-projects", "chemistry",
+    "datacenters", "dust-aod", "environmental-nonprofits", "extraction-sites",
+    "flights", "forest", "glaciers", "human-encroachment", "human-modification",
+    "industrial-sites", "misery-index", "ocean-currents", "particulates",
+    "power-plants", "protected-areas", "protected-areas-points", "satellites",
+    "species-threatened", "sst", "ssta", "tree-time", "waves", "wildfires",
+    "wind", "wind-speed"
+  ]
+}
