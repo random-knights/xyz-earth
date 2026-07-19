@@ -203,6 +203,8 @@ extension EarthSphereDetails on EarthSphere {
             // Ambient satellite orbit bands + named satellites (CelesTrak TLEs,
             // client-propagated).
             'satellites',
+            // US environmental nonprofits (IRS BMF, coarse ZIP centroids).
+            'environmental-nonprofits',
           },
       };
 

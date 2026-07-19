@@ -139,6 +139,13 @@ Every globe filter — **Animate** (flow), **Overlay** (scalar value-ramps), and
 
 </div>
 
+The newest annotation layer is **Environmental Nonprofits** (US): the IRS Exempt
+Organizations Business Master File located via US Census ZCTA ZIP centroids,
+both US-government public domain (attribution as courtesy, no share-alike). Like
+every bundled layer it ships a representative offline sample (organizations
+aggregated to coarse ZIP-code areas, never named) and upgrades to live data when
+the nonprofits ingest publishes its snapshot.
+
 ---
 
 ## Governance

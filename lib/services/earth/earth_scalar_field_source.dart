@@ -93,6 +93,15 @@ final class StaticAssetPointSetSource implements EarthPointSetSource {
   static const boatsAsset =
       'assets/earth/points/boats-representative-v1.json';
 
+  /// environmental-nonprofits = US environmental nonprofits (IRS Exempt
+  /// Organizations BMF located via US Census ZCTA Gazetteer ZIP centroids;
+  /// value = log10 annual revenue USD). Representative offline sample AGGREGATED
+  /// to coarse ZIP-code-area centroids - identity-free (org counts, never named
+  /// organizations). The app ships an empty pending fallback; xyz-earth ships a
+  /// representative so the keyless boot always renders the layer.
+  static const environmentalNonprofitsAsset =
+      'assets/earth/points/environmental-nonprofits-representative-v1.json';
+
   final String assetPath;
 
   @override
