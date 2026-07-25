@@ -1,6 +1,6 @@
 # Agent rules (xyz-earth)
 
-**Read `../CODEX.md` in this repo root and follow it. It is the authority for
+**Read `../AGENTS.md` in this repo root and follow it. It is the authority for
 this repo.** Canonical org rules live in `C:\rand0m\CODEX.md`; the repo CODEX
 restates them and adds the local specifics. `RUNBOOK.md` is the human guide.
 

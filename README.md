@@ -188,4 +188,4 @@ proposals, license questions, and layer requests.
 
 - [RUNBOOK.md](RUNBOOK.md) - humans: how to ship a Release, roll back, why this
   repo is keyless, what breaks and how to fix it.
-- [CODEX.md](CODEX.md) - agents: the rules that apply in this repo.
+- [AGENTS.md](AGENTS.md) - agents: the rules that apply in this repo.
