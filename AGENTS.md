@@ -1,8 +1,8 @@
-# CODEX - agent rules for xyz-earth
+# AGENTS - agent rules for xyz-earth
 
-Canonical rules live in `C:\rand0m\CODEX.md` (the working-root codex). This
+Canonical rules live in `C:\rand0m\AGENTS.md` (the working-root standard). This
 file restates what an agent MUST follow here and adds the xyz-earth specifics.
-If the two ever disagree, the working-root codex wins.
+If the two ever disagree, the working-root standard wins.
 
 xyz-earth is the standalone, PUBLIC, extracted globe. It is not the app; the app
 is `xyz` (rand0m.ai).

@@ -1,6 +1,6 @@
 # RUNBOOK - xyz-earth (human operator)
 
-For agent rules see `CODEX.md`. `README.md` describes the globe itself; this is
+For agent rules see `AGENTS.md`. `README.md` describes the globe itself; this is
 the operator path.
 
 xyz-earth is the standalone, public, extracted globe. Nothing here deploys to a
