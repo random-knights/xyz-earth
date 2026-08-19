@@ -11,7 +11,7 @@
     <a href="https://github.com/random-knights/.github/blob/main/READMORE"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/random-knights/xyz">View Demo</a>
+    <a href="https://github.com/random-knights/ruok">View Demo</a>
     ·
     <a href="https://github.com/random-knights/123/issues">Report Bug</a>
     ·
