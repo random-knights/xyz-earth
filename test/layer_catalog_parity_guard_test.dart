@@ -9,7 +9,7 @@ import 'package:xyz_earth/models/earth/earth_scalar_grid.dart';
 
 /// Parity guard for the globe layer catalog.
 ///
-/// The private app (random-knights/xyz) is the upstream source of truth for the
+/// The private app (random-knights/ruok) is the upstream source of truth for the
 /// globe layer set; this package mirrors it. Before this guard existed the
 /// mirror could drift SILENTLY - a layer (environmental-nonprofits) landed in
 /// the app and this package's catalog + bundled assets simply fell behind, with

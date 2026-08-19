@@ -5,7 +5,7 @@ file restates what an agent MUST follow here and adds the xyz-earth specifics.
 If the two ever disagree, the working-root standard wins.
 
 xyz-earth is the standalone, PUBLIC, extracted globe. It is not the app; the app
-is `xyz` (rand0m.ai).
+is `ruok` (rand0m.ai).
 
 ## Owner ethos
 
@@ -20,20 +20,16 @@ is `xyz` (rand0m.ai).
 
 ## Concurrency - IMPORTANT
 
-At most ONE write-lane per repo at a time. Parallelize ACROSS repos, never
-WITHIN one.
+Follow the canonical root rule. Parallel write-lanes in one repository are
+allowed only when each lane uses its own full clone, claimed file paths do not
+overlap, and each lane rebases onto origin/main before pushing. Shared
+worktrees still permit only one write-lane because they share one `.git`
+directory. Read-only lanes may run alongside write work.
 
-Why: every repo under `C:\rand0m` is a fresh clone sharing per-repo git
-worktrees. Two write-lanes in one repo has repeatedly caused mid-edit on-disk
-file changes, commits tangling onto another agent's branch, and .git metadata
-corruption (NUL-padded config/packed-refs, stale index.lock).
-
-- Read-only lanes (audits, discovery, gh status reads) may run alongside
-  anything.
-- If you hit a shared-worktree conflict mid-task: STOP. Verify `git status` and
-  `git diff` contain only YOUR changes and HEAD is on YOUR branch before
-  committing.
-- `xyz-docs` is the highest-risk repo org-wide; serialize writes to it.
+If you hit a shared-worktree conflict, stop and verify that `git status` and
+`git diff` contain only your changes and HEAD is on your branch before
+committing. `xyz-docs` remains the highest-risk repo org-wide, so serialize
+writes there.
 
 ## Toolchain
 
@@ -54,14 +50,14 @@ that proves no secrets, no auth SDKs, and no private dependencies crept in. That
 guard is the point of the repo, not red tape:
 
 - **Never add a secret**, an auth SDK, or a private `rk_*` git dependency here.
-  If a change needs one, it does not belong in xyz-earth - it belongs in `xyz`.
+  If a change needs one, it does not belong in xyz-earth - it belongs in `ruok`.
 - The guard failing is a real finding. Do not weaken it to make a PR pass.
 - Everything here is world-readable. Nothing internal, private, or unreleased.
 
 ## Workflows
 
-  ci.yml           `CI` (job: `gate`) - the contributor gate: analyze + tests +
-                   the keyless guard. Already the org-standard name.
+  ci.yml           `CI` (job: `CI Gate`) - the contributor gate: analyze + tests
+                   + build + the keyless guard. Required by the org ruleset.
   deploy-prod.yml  Packages an installable build and publishes a GitHub Release
                    so open-source app stores (e.g. Komi Store, which
                    auto-discovers repos publishing installable Release binaries

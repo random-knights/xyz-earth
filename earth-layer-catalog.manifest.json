@@ -1,7 +1,7 @@
 {
   "_comment": [
     "Machine-checkable twin of earth-layer-catalog.svg. The private app",
-    "(random-knights/xyz) is the UPSTREAM source of truth for the globe layer",
+    "(random-knights/ruok) is the UPSTREAM source of truth for the globe layer",
     "set; this package (xyz-earth) mirrors it. test/layer_catalog_parity_guard_test.dart",
     "enforces this manifest against the package's own EarthAnimatedLayerIds",
     "registry, so a layer can never SILENTLY fall out of parity again (that is",
@@ -18,7 +18,7 @@
     "and cannot reach the private app at CI time), so appRegistry is a pinned",
     "mirror, not a live read."
   ],
-  "appRegistrySource": "random-knights/xyz  lib/models/earth/earth_scalar_grid.dart  EarthAnimatedLayerIds",
+  "appRegistrySource": "random-knights/ruok  lib/models/earth/earth_scalar_grid.dart  EarthAnimatedLayerIds",
   "syncedFromAppAt": "2026-07-18",
 
   "represented": {
