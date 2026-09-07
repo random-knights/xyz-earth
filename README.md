@@ -1,9 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <picture>
-    <img alt="Random Knights, XYZ day/night themed header." src="https://github.com/random-knights/.github/raw/main/assets/ruok-earth.png">
-  </picture>
+  <img alt="Random Knights Earth" src="assets/readme-header.png?v=20260906">
 <h3 align="center" style="color:#ff4124">Random Knights, XYZ</h3>
   <p align="center">
     rand0m.ai & randomly.engineering
@@ -28,6 +26,10 @@ as an animated globe with a **Planet Health Score**. It reads public rand0m.ai
 Storage over plain HTTPS and ships with bundled representative data, so it
 **always renders offline**: **no keys, no auth, no Firebase, no private
 dependencies.**
+
+<div align="center">
+  <img alt="xyz-earth globe demonstration" src="assets/readme-demo.gif?v=20260906">
+</div>
 
 <div align="center">
 
@@ -96,6 +98,10 @@ undeployed, and every live fetch has a timeout.
 > displays the score document. It never recomputes or alters it.
 
 ---
+
+<div align="center">
+  <img alt="The xyz-earth globe and Planet Health Score" src="https://github.com/random-knights/.github/raw/main/assets/ruok-earth.png">
+</div>
 
 ## Planet Health Score v0.7
 
