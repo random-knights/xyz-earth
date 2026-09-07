@@ -8,7 +8,7 @@ import 'dart:convert';
 // The doc carries per-region + global sub-scores (already coverage/exposure
 // weighted server-side). The CLIENT recomputes the displayed score REACTIVELY
 // on every earth+ filter (region/layer/timeline) by re-weighting the
-// already-fetched sub-scores — no refetch. The app's own AI footprint (AIEDS)
+// already-fetched sub-scores — no refetch. The app's own AI footprint (AiEDs)
 // is attached as a SEPARATE field (device-local CO2e, blendedIntoScore:false)
 // and is NEVER folded into the planetary number.
 
@@ -165,7 +165,7 @@ final class EarthLiveHealthScore {
   final EarthLiveRegionScore global;
   final Map<String, EarthLiveRegionScore> regions;
 
-  /// Server contract slot for the AIEDS footprint — normally null (the CLIENT
+  /// Server contract slot for the AiEDs footprint — normally null (the CLIENT
   /// fills the device value). Never blended into [global.score].
   final double? aiedsServerCo2eGrams;
   final bool aiedsBlendedIntoScore; // MUST be false (governance invariant)
@@ -210,7 +210,7 @@ final class EarthLiveHealthScore {
       EarthLiveHealthScore.fromJson(jsonDecode(raw) as Map<String, dynamic>);
 
   /// Re-weight the already-fetched sub-scores for the current earth+ filter and
-  /// attach the SEPARATE device AIEDS footprint.
+  /// attach the SEPARATE device AiEDs footprint.
   ///
   /// - region drives the base score (`global` -> the exposure-weighted rollup;
   ///   any other id -> that region, falling back to global if absent).
@@ -364,7 +364,7 @@ final class EarthLiveScoreView {
   final String? isolatedLayerId; // non-null when isolated to one signal
   final String? timeWindowLabel;
 
-  /// Governance invariant: the AIEDS footprint is never part of the score.
+  /// Governance invariant: the AiEDs footprint is never part of the score.
   bool get aiedsBlendedIntoScore => false;
   bool get isIsolated => isolatedLayerId != null;
 
