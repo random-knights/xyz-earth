@@ -31,14 +31,6 @@ dependencies.**
   <img alt="xyz-earth globe demonstration" src="assets/readme-demo.gif?v=20260906">
 </div>
 
-<div align="center">
-
-[![rand0m earth2d, 2D wind globe preview](preview/earth2d-wind-globe.svg)](preview/earth2d-wind-globe.html)
-
-<sub><b>2D globe (<code>earth2d</code>), wind layer.</b> Static preview · <a href="preview/earth2d-wind-globe.html"><b>open the interactive mock »</b></a> (drag to rotate). Illustrative wind field, not live data.</sub>
-
-</div>
-
 ---
 
 ## Run it (60 seconds)
@@ -100,7 +92,11 @@ undeployed, and every live fetch has a timeout.
 ---
 
 <div align="center">
-  <img alt="The xyz-earth globe and Planet Health Score" src="https://github.com/random-knights/.github/raw/main/assets/ruok-earth.png">
+
+[![rand0m earth2d, 2D wind globe preview](preview/earth2d-wind-globe.svg)](preview/earth2d-wind-globe.html)
+
+<sub><b>2D globe (<code>earth2d</code>), wind layer.</b> Static preview · <a href="preview/earth2d-wind-globe.html"><b>open the interactive mock »</b></a> (drag to rotate). Illustrative wind field, not live data.</sub>
+
 </div>
 
 ## Planet Health Score v0.7
