@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img alt="Random Knights Earth" src="assets/readme-header.png?v=20260906">
+  <img alt="xyz-earth: E+ badge over a single globe" src="assets/eplus-header-v2.gif?v=20260913">
 <h3 align="center" style="color:#ff4124">Random Knights, XYZ</h3>
   <p align="center">
     rand0m.ai & randomly.engineering
