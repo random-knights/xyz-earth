@@ -2,9 +2,12 @@
 <br />
 <div align="center">
   <img alt="xyz-earth: E+ badge over a single globe" src="assets/eplus-header-v2.gif?v=20260913">
-<h3 align="center" style="color:#ff4124">Random Knights, XYZ</h3>
+<h3 align="center" style="color:#ff4124">Random Knights | Earth+</h3>
   <p align="center">
-    rand0m.ai & randomly.engineering
+    🏫 <a href="https://rand0m.ai">rand0m.ai</a> 2025-2030 🛸 roswell, ga 🍑 <a href="https://randomknights.xyz">ᴚk.xyz</a> + <a href="https://randomknights.llc">ᴚk.llc</a> + <a href="https://randomknights.org">ᴚk.org</a> 🏰
+    <br />
+    🌝 <a href="https://randomly.engineering">randomly.engineering</a> & <a href="https://knightly.engineering">knightly.engineering</a> 🌚
+    <br />
     <br />
     <a href="https://github.com/random-knights/.github/blob/main/READMORE"><strong>Explore the docs »</strong></a>
     <br />
@@ -26,10 +29,6 @@ as an animated globe with a **Planet Health Score**. It reads public rand0m.ai
 Storage over plain HTTPS and ships with bundled representative data, so it
 **always renders offline**: **no keys, no auth, no Firebase, no private
 dependencies.**
-
-<div align="center">
-  <img alt="xyz-earth globe demonstration" src="assets/readme-demo.gif?v=20260906">
-</div>
 
 ---
 
