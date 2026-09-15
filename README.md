@@ -1,26 +1,40 @@
-<!-- PROJECT LOGO -->
-<br />
+<a name="readme-top"></a>
+
+<!-- HEANDER PNG -->
+
 <div align="center">
-  <img alt="xyz-earth: E+ badge over a single globe" src="assets/eplus-header-v2.gif?v=20260913">
-<h3 align="center" style="color:#ff4124">Random Knights | Earth+</h3>
+  <picture>
+    <img alt="Random Knights XYZ Earth" src="assets/readme-header.png">
+  </picture>
+
+<!-- HERO -->
+
+<h3 align="center" style="color:#ff4124">Random Knights | XYZ Earth</h3>
+
   <p align="center">
     🏫 <a href="https://rand0m.ai">rand0m.ai</a> 2025-2030 🛸 roswell, ga 🍑 <a href="https://randomknights.xyz">ᴚk.xyz</a> + <a href="https://randomknights.llc">ᴚk.llc</a> + <a href="https://randomknights.org">ᴚk.org</a> 🏰
     <br />
     🌝 <a href="https://randomly.engineering">randomly.engineering</a> & <a href="https://knightly.engineering">knightly.engineering</a> 🌚
     <br />
     <br />
-    <a href="https://github.com/random-knights/.github/blob/main/READMORE"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/random-knights/ruok">View Demo</a>
+    <a href="https://rand0m.ai/earth">View Demo</a>
     ·
-    <a href="https://github.com/random-knights/123/issues">Report Bug</a>
+    <a href="https://github.com/random-knights/xyz-earth/wiki">View Docs</a>
     ·
-    <a href="https://github.com/random-knights/123/issues">Request Feature</a>
+    <a href="https://github.com/random-knights/xyz-earth/issues">Report Bug</a>
+    <br />
   </p>
 </div>
 
-# xyz-earth
+<!-- HERO GIF -->
+
+<p align="center">
+  <img alt="xyz-earth: E+ badge over a single globe" src="assets/eplus-header-v2.gif?v=20260913">
+</p>
+
+<!-- TITLE -->
+
+## <span style="color:#FAAFA5"><u> **XYZ-EARTH** </u></span>
 
 > The living globe for [rand0m.ai](https://rand0m.ai) is **keyless, open-source, clone-and-run.**
 
@@ -30,9 +44,15 @@ Storage over plain HTTPS and ships with bundled representative data, so it
 **always renders offline**: **no keys, no auth, no Firebase, no private
 dependencies.**
 
----
+<div align="center">
 
-## Run it (60 seconds)
+[![ForScience][ForScience]][ForScience-url] [![ForDevs][ForDevs]][ForDevs-url] [![ForQAs][ForQAs]][ForQAs-url]
+
+</div>
+
+<!-- QUICKSTART -->
+
+## <span style="color:#555555"><u> **QUICKSTART** </u></span>
 
 **Prerequisites:** the [Flutter SDK](https://docs.flutter.dev/get-started/install)
 (stable, Dart ≥ 3.6) and Chrome.
@@ -65,9 +85,7 @@ flutter build web
   for the daily score over time.
 - **HD** raises the flow-field particle budget; **Spin** auto-rotates the globe.
 
----
-
-## How it stays keyless
+### How it stays keyless
 
 The viewer reads the public rand0m.ai Storage bucket directly:
 
@@ -88,8 +106,6 @@ undeployed, and every live fetch has a timeout.
 > The score math is **frozen at v0.7** (owner-ratified). This app only reads and
 > displays the score document. It never recomputes or alters it.
 
----
-
 <div align="center">
 
 [![rand0m earth2d, 2D wind globe preview](preview/earth2d-wind-globe.svg)](preview/earth2d-wind-globe.html)
@@ -98,7 +114,11 @@ undeployed, and every live fetch has a timeout.
 
 </div>
 
-## Planet Health Score v0.7
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- TITLE -->
+
+## <span style="color:#FAAFA5"><u> **PLANETARY HEALTH SCORING** </u></span>
 
 A single number per region and globally, blending nine Earth-system domains. It
 is an estimate, not a certified assessment; every signal carries a confidence
@@ -132,28 +152,35 @@ compressed above 90 so no domain can ever read as a "solved" 100). The bundled
 representative asset mirrors the live v0.7 document and is guarded against
 methodology drift by `test/score_asset_drift_guard_test.dart`.
 
----
+<!-- ROADMAP -->
 
-## Layer catalog
+## <span style="color:#555555" name="roadmap"><u> **ROADMAP** </u></span>
 
-Every globe filter, **Animate** (flow), **Overlay** (scalar value-ramps), and **Annotation** (point markers), includes its live status and the exact palette the renderer uses:
+```mermaid
+gantt
+title Future Proofing
+dateFormat YYYY-MM
+section 2026
+✌️ :a1, 2026-01, 365d
+❤️ :active, a1, 2026-01, 365d
+🌎 :crit, a1, 2026-01, 365d
+```
 
-<div align="center">
+<!-- CONTRIBUTING -->
 
-![Globe layer catalog](earth-layer-catalog.svg)
+## <span style="color:#555555" name="contributing"><u> **CONTRIBUTING** </u></span>
 
-</div>
+If you have a suggestion that would make this better, fork the repo and open a pull request &mdash; or open an issue with the tag "enhancement". Don't forget to star the project!
 
-The newest annotation layer is **Environmental Nonprofits** (US): the IRS Exempt
-Organizations Business Master File located via US Census ZCTA ZIP centroids,
-both US-government public domain (attribution as courtesy, no share-alike). Like
-every bundled layer it ships a representative offline sample (organizations
-aggregated to coarse ZIP-code areas, never named) and upgrades to live data when
-the nonprofits ingest publishes its snapshot.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
----
+follow our progress on [GitHub @ Random Knights](https://github.com/random-knights)
 
-## Governance
+### Governance
 
 Everything you see is **aggregated** and **identity-free** by design:
 
@@ -169,16 +196,12 @@ the [Code of Conduct](CODE_OF_CONDUCT.md). The
 `test/keyless_guard_test.dart` gate proves the tree stays free of secrets, auth
 SDKs, and private dependencies.
 
----
-
-## Join the research
+### Join the research
 
 [**Discussions →**](../../discussions): score methodology, data-source
 proposals, license questions, and layer requests.
 
----
-
-## License & attribution
+### License & attribution
 
 - **Code:** [MIT](LICENSE).
 - **Methodology & governance docs:** CC BY 4.0.
@@ -189,11 +212,36 @@ proposals, license questions, and layer requests.
   license. See [`NOTICE`](NOTICE) (NOAA, NASA, CAMS, GLAD, IUCN/WDPA, Natural
   Earth, gHM, WRI, d3/topojson, …).
 
-## Operating this repo
+<!-- STANDARD -->
 
-- [RUNBOOK.md](RUNBOOK.md) - humans: how to ship a Release, roll back, why this
-  repo is keyless, what breaks and how to fix it.
+<div align="center">
+
+## <span style="color:#555555" name="standard"><u> **STANDARD** </u></span>
+
+| Name        | :chipmunk: |   Version    |             Description             |
+| ----------- | :--------: | :----------: | :---------------------------------: |
+| Earth+      |     🌎     | v1.0.0-draft |        Earth Health Scoring         |
+| AiEDs       |     ⚡     |    v2.1.0    |        AI Energy Disclosure         |
+| K13         |     👑     |    v2.0.0    |        AI Summary Reporting         |
+| AI for Good |     ❤️     |   &middot;   | (ITU) &middot; (UN) Recommendations |
+
+</div>
+
+<!-- OPERATING -->
+
+## <span style="color:#555555"><u> **OPERATING** </u></span>
+
+- [RUNBOOK.md](RUNBOOK.md) - humans: how it deploys (merging to main publishes
+  the live site), roll back, what breaks and how to fix it.
 - [AGENTS.md](AGENTS.md) - agents: the rules that apply in this repo.
+
+<!-- CONTACT -->
+
+## <span style="color:#555555"><u> **CONTACT** </u></span>
+
+If any issues arise, please draft a strongly worded email and <u>**never**</u> send it to: **admin@rand0m.ai**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!----------- BADGES ----------->
 
@@ -458,4 +506,3 @@ proposals, license questions, and layer requests.
 [OpenCollective-url]: https://opencollective.com/random-knights
 [ORCiD]: https://img.shields.io/badge/ORCiD-edc303?style=for-the-badge&logo=orcid&logoColor=white
 [ORCiD-url]: https://orcid.org/0009-0006-5066-1693
-
