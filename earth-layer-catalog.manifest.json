@@ -19,7 +19,20 @@
     "mirror, not a live read."
   ],
   "appRegistrySource": "random-knights/ruok  lib/models/earth/earth_scalar_grid.dart  EarthAnimatedLayerIds",
-  "syncedFromAppAt": "2026-07-18",
+  "syncedFromAppAt": "2026-09-16",
+  "syncedFromAppSha": "04da620e28e3fc91f5e34d223a0f5cab4c797d11",
+  "syncNote": [
+    "Re-synced 2026-09-16 against the app registry at syncedFromAppSha, which",
+    "is the merge commit of the ruok Earth layer catalog parity change. The",
+    "app registry was READ, id by id, and compared per slot: it is UNCHANGED",
+    "since the 2026-07-18 sync. appRegistry below still equals it exactly, so",
+    "the mirror had not drifted - only this timestamp had, which is its own",
+    "kind of dishonesty: a stale date reads as an unchecked mirror.",
+    "",
+    "The app change did not touch EarthAnimatedLayerIds. It added catalog and",
+    "producer metadata for boats and wind-speed, which were already in the",
+    "registry and already mirrored here."
+  ],
 
   "represented": {
     "_note": "MUST equal this package's EarthAnimatedLayerIds (flow/scalar/point). The guard asserts set equality per slot.",
@@ -42,8 +55,9 @@
     {
       "id": "wind-speed",
       "slot": "scalar",
-      "reason": "Surface wind-speed scalar overlay (|u,v| km/h, storm palette) landed in the app. Not yet ported to xyz-earth: it needs a representative scalar grid asset, a different family from this PR's pointset work. Tracked here so the gap is loud, not silent.",
-      "trackedSince": "2026-07-18"
+      "reason": "Surface wind-speed scalar overlay (|u,v| km/h, storm palette) landed in the app. Not yet ported to xyz-earth. CORRECTED 2026-09-16: the earlier reason here said it needs a representative scalar grid asset. It does not. In the app this layer has NO asset and NO object of its own - WindSpeedScalarFieldSource computes sqrt(u*u+v*v)*3.6 from the same wind u/v grid the flow already loads, and inherits that grid's source, vintage and isLive. This package already ships assets/earth/wind/wind-representative-climatology-v1.json and reads the same live GFS grid, so the port is a small derived source plus its palette and slot wiring, not a new data asset. The wrong reason made the gap look larger than it is and is why it sat here for two months.",
+      "trackedSince": "2026-07-18",
+      "reasonCorrectedAt": "2026-09-16"
     }
   ],
 
