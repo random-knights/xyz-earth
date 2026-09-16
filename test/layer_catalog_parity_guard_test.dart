@@ -94,6 +94,63 @@ void main() {
         reason: 'a layer is both represented and pendingPortFromApp');
   });
 
+  /// The sync METADATA is part of the mirror. A manifest can be in perfect
+  /// parity and still be untrustworthy if nobody can tell when it was last
+  /// checked, or against which app commit. Added 2026-09-16 after a re-sync
+  /// found the layer sets identical but the recorded date two months old and a
+  /// deferral reason that was simply wrong.
+  group('the sync record is usable', () {
+    test('syncedFromAppAt is an ISO date and syncedFromAppSha is a real sha',
+        () {
+      final at = manifest['syncedFromAppAt'];
+      expect(at, isA<String>(),
+          reason: 'syncedFromAppAt is missing: the mirror cannot say when it '
+              'was last checked');
+      expect(RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(at as String), isTrue,
+          reason: 'syncedFromAppAt must be YYYY-MM-DD, got "$at"');
+
+      final sha = manifest['syncedFromAppSha'];
+      expect(sha, isA<String>(),
+          reason: 'syncedFromAppSha is missing: a date alone does not say '
+              'WHICH app registry was mirrored');
+      expect(RegExp(r'^[0-9a-f]{7,40}$').hasMatch(sha as String), isTrue,
+          reason: 'syncedFromAppSha must be a hex commit sha, got "$sha"');
+    });
+
+    test('appRegistry is sorted and free of duplicates', () {
+      final raw = (manifest['appRegistry'] as List).cast<String>();
+      expect(raw.toSet().length, raw.length,
+          reason: 'appRegistry lists a layer id twice');
+      final sorted = [...raw]..sort();
+      expect(raw, sorted,
+          reason: 'appRegistry must stay sorted so a hand sync produces a '
+              'readable diff instead of a shuffled list');
+    });
+
+    test('every deferral carries a reason and a trackedSince date', () {
+      final pending =
+          (manifest['pendingPortFromApp'] as List).cast<Map<String, dynamic>>();
+      for (final entry in pending) {
+        final id = entry['id'];
+        expect(id, isA<String>());
+        final reason = entry['reason'];
+        expect(reason, isA<String>(),
+            reason: 'pendingPortFromApp entry "$id" has no reason, so the gap '
+                'is silent again');
+        expect((reason as String).trim().length, greaterThan(40),
+            reason: 'pendingPortFromApp entry "$id" needs a reason someone can '
+                'act on, not a placeholder');
+        final since = entry['trackedSince'];
+        expect(since, isA<String>(),
+            reason: 'pendingPortFromApp entry "$id" has no trackedSince, so '
+                'nobody can see how long it has been deferred');
+        expect(RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(since as String),
+            isTrue,
+            reason: 'trackedSince for "$id" must be YYYY-MM-DD, got "$since"');
+      }
+    });
+  });
+
   test('every bundled point asset declared in the manifest exists on disk', () {
     final assets = manifest['bundledPointAssets'] as Map<String, dynamic>;
     for (final entry in assets.entries) {
