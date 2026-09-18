@@ -239,6 +239,27 @@ proposals, license questions, and layer requests.
   the live site), roll back, what breaks and how to fix it.
 - [AGENTS.md](AGENTS.md) - agents: the rules that apply in this repo.
 
+<!-- The AiEDs section below is GENERATED and reports the energy of developing
+     THIS repository. Everything between AIEDS:BEGIN and AIEDS:END is written by
+     the AiEDs README generator from the SessionEnd ledgers and placed here by
+     scripts/sync-aieds.mjs in random-knights/.github. Do not hand edit it: a
+     typed figure is a figure nobody can check, and the AiEDs block check fails
+     a README whose block has drifted from the generated one. -->
+
+<!-- AIEDS:BEGIN -->
+
+<div align="center">
+
+## <span style="color:#FF4124"> **Ai Energy Disclosure Standard** </span>
+
+### <span style="color:#EDC303"> Total **AiEDs** Usage | xyz-earth </span>
+
+**No sessions recorded yet for xyz-earth.** The <code>SessionEnd</code> hook has not attributed any development session to this repository, so there is no figure to publish. This block fills in on the next generated sync.
+
+</div>
+
+<!-- AIEDS:END -->
+
 <!-- CONTACT -->
 
 ## <span style="color:#555555"><u> **CONTACT** </u></span>
