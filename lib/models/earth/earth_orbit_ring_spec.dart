@@ -3,7 +3,7 @@
 /// `web/earth_point_field.js` (Cesium 3D) and `web/earth2d_points.js` (2D
 /// canvas). It is carried into the renderers via the bridge payload
 /// ([EarthPointSet.toBridgeJson] `rings`) so the geometry is data-driven and the
-/// band radii / tilts / colours are never hand-duplicated across the two files.
+/// band radii / tilts / colors are never hand-duplicated across the two files.
 ///
 /// WHY SCHEMATIC: a true GEO orbit sits at ~6.6 Earth radii — far off the framed
 /// globe — and MEO at ~4.2 R, so drawing the rings at real altitude would push
@@ -33,7 +33,7 @@ final class EarthOrbitRingBand {
   /// Display label: `LEO` | `MEO` | `GEO`.
   final String label;
 
-  /// Band colour as RGB bytes — lock-step with the renderers' `bandColor`
+  /// Band color as RGB bytes — lock-step with the renderers' `bandColor`
   /// (LEO blue, MEO amber/gold, GEO violet).
   final List<int> colorRgb;
 
@@ -67,7 +67,7 @@ final class EarthOrbitRingBand {
       };
 }
 
-/// The canonical three-band spec. The radius factors / tilts / colours here are
+/// The canonical three-band spec. The radius factors / tilts / colors here are
 /// the values the renderers fall back to when the bridge omits `rings`, enforced
 /// by `earth_orbit_ring_test.dart` so the JS defaults can never silently drift.
 abstract final class EarthOrbitRingSpec {

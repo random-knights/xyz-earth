@@ -6,7 +6,7 @@ import 'package:xyz_earth/models/earth/earth_scalar_grid.dart';
 import 'package:xyz_earth/services/earth/earth_scalar_field_source.dart';
 
 /// Builds the AMBIENT satellites point set (Space mode) from a bundled curated
-/// TLE catalogue: one CURRENT, NAMED dot per satellite (ISS / GPS / GOES / …),
+/// TLE catalog: one CURRENT, NAMED dot per satellite (ISS / GPS / GOES / …),
 /// each carrying its altitude (→ orbit band) and its name as a display label.
 ///
 /// The three orbit-band RINGS themselves are SCHEMATIC geometry drawn by the
@@ -26,7 +26,7 @@ class SatellitePointSetSource implements EarthPointSetSource {
     this.now,
   });
 
-  /// Bundled curated TLE catalogue (earth.tle.v1).
+  /// Bundled curated TLE catalog (earth.tle.v1).
   final String assetPath;
 
   /// Injected clock for deterministic tests; defaults to [DateTime.now] (UTC).
@@ -64,7 +64,7 @@ class SatellitePointSetSource implements EarthPointSetSource {
     return EarthPointSet(
       points: points,
       valueMin: 0,
-      // GEO altitude ~35 786 km caps the colour/size scale, so LEO→GEO reads as
+      // GEO altitude ~35 786 km caps the color/size scale, so LEO→GEO reads as
       // an altitude gradient (violet ramp).
       valueMax: 36000,
       units: 'km altitude',

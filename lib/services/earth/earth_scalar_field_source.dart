@@ -177,7 +177,7 @@ final class LiveStoragePointSetSource implements EarthPointSetSource {
   @override
   Future<EarthPointSet> load() async {
     // Skip the live fetch (use the representative directly) when the manifest
-    // marks this object undeployed — avoids a console 403 with no behaviour
+    // marks this object undeployed — avoids a console 403 with no behavior
     // change (the fallback is what the catch below would return anyway).
     if (!await EarthLiveReadyManifest.instance.isReady(liveUrl)) {
       return fallback.load();
@@ -385,7 +385,7 @@ final class LiveStorageScalarFieldSource implements EarthScalarFieldSource {
   @override
   Future<EarthScalarGrid> load() async {
     // Skip the live fetch (use the representative directly) when the manifest
-    // marks this object undeployed — avoids a console 403 with no behaviour
+    // marks this object undeployed — avoids a console 403 with no behavior
     // change (the fallback is what the catch below would return anyway).
     if (!await EarthLiveReadyManifest.instance.isReady(liveUrl)) {
       return fallback.load();

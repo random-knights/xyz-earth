@@ -5,7 +5,7 @@
 //   layer's valid medium (geo-validity: air-quality=land/coast, SST=ocean,
 //   density/forest=land). Same grid geometry family as EarthWindGrid so it
 //   reuses the land/sea mask + projection.
-// EarthPointSet : masked markers sized/coloured by value (wildfire, biodiversity)
+// EarthPointSet : masked markers sized/colored by value (wildfire, biodiversity)
 //   rendered by the point renderer, horizon-culled + domain-masked to land.
 //
 // HONESTY: [isLive] + [caption] carry the governed framing exactly like
@@ -39,7 +39,7 @@ abstract final class EarthRendererPalettes {
 }
 
 /// T1 (E) — client-side per-POINT-LAYER display overrides, independent of the
-/// data feed: the renderers key marker colour off the point set's [paletteId]
+/// data feed: the renderers key marker color off the point set's [paletteId]
 /// and the marker glyph off its [markerShape], so these reskin a layer without a
 /// data re-publish. Applied in [EarthFrameResolver.pointFrameFor].
 abstract final class EarthPointLayerDisplay {
@@ -409,7 +409,7 @@ final class EarthScalarGrid with _EarthLayerHonesty {
       isLive: (meta['liveReady'] as bool?) ?? (meta['isLive'] as bool?) ?? false,
       referenceTime: meta['referenceTime'] as String?,
       // Item 8: a density-style field renders as a crisp choropleth (discrete
-      // colour steps, nearest cell edges, no de-block blur) — not a smooth blob.
+      // color steps, nearest cell edges, no de-block blur) — not a smooth blob.
       choropleth: (meta['choropleth'] as bool?) ?? false,
       choroplethSteps: (meta['choroplethSteps'] as num?)?.toInt() ?? 9,
     );
@@ -440,7 +440,7 @@ final class EarthScalarGrid with _EarthLayerHonesty {
   @override
   final String? referenceTime;
 
-  /// Item 8: render as a crisp choropleth (discrete colour steps, nearest cell
+  /// Item 8: render as a crisp choropleth (discrete color steps, nearest cell
   /// edges, no de-block blur) instead of a smooth interpolated field.
   final bool choropleth;
   final int choroplethSteps;
@@ -500,7 +500,7 @@ final class EarthScalarPoint {
   final String? label;
 
   /// Item 5: this point is a folded-in BIODIVERSITY richness dot (rendered inside
-  /// the Protected Areas annotation as a LARGER, alt-colour dot). The standalone
+  /// the Protected Areas annotation as a LARGER, alt-color dot). The standalone
   /// biodiversity layer is dropped from the picker; its points ride here.
   final bool bio;
 
@@ -520,7 +520,7 @@ final class EarthScalarPoint {
   bool get isCluster => count > 1;
 }
 
-/// A set of masked markers sized/coloured by value (wildfire, biodiversity).
+/// A set of masked markers sized/colored by value (wildfire, biodiversity).
 final class EarthPointSet with _EarthLayerHonesty {
   const EarthPointSet({
     required this.points,
@@ -703,7 +703,7 @@ final class EarthPointSet with _EarthLayerHonesty {
       // Optional render mode ('orbital' = elevated LEO/MEO/GEO satellite shells).
       if (renderMode != null) 'render': renderMode,
       // Orbital layers carry the SHARED schematic ring spec (band radii / tilts /
-      // colours) so both renderers draw identical concentric rings — the single
+      // colors) so both renderers draw identical concentric rings — the single
       // source of truth is EarthOrbitRingSpec, never hand-copied into the JS.
       if (renderMode == 'orbital') 'rings': EarthOrbitRingSpec.bridgeRings,
       if (referenceTime != null) 'referenceTime': referenceTime,
@@ -718,7 +718,7 @@ final class EarthPointSet with _EarthLayerHonesty {
             // Item 3: carry each cluster dot's own member labels to the renderer
             // so the click snapshot lists THIS dot's members (not a rollup).
             if (p.members.isNotEmpty) 'members': p.members,
-            // Item 5: a folded-in biodiversity richness dot (larger, alt-colour).
+            // Item 5: a folded-in biodiversity richness dot (larger, alt-color).
             if (p.bio) 'bio': 1,
           },
       ],

@@ -16,7 +16,7 @@ import 'package:http/http.dart' as http;
 /// EXCLUDE-list semantics: every live object is fetched UNLESS its path appears
 /// in `notReady` — so newly-deployed or brand-new layers are never hidden; only
 /// explicitly-undeployed objects are gated. FAIL-OPEN: if the manifest can't load
-/// at all, nothing is gated (zero behaviour change — live fetches proceed).
+/// at all, nothing is gated (zero behavior change — live fetches proceed).
 ///
 /// To update as refreshers deploy: either edit the bundled asset (ship), or set
 /// `checkStorage: true` and upload `earth/manifest/live-ready.json` (dynamic, no

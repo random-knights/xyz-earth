@@ -205,7 +205,7 @@ proposals, license questions, and layer requests.
 
 - **Code:** [MIT](LICENSE).
 - **Methodology & governance docs:** CC BY 4.0.
-- **Brand assets** (the rand0m logo/header, brand colours beyond the few inlined
+- **Brand assets** (the rand0m logo/header, brand colors beyond the few inlined
   UI tokens): **reserved, not covered by the MIT code license**. See
   [`NOTICE`](NOTICE). The app's runtime does not depend on the brand logo.
 - **Upstream data & bundled third-party code:** each carries its provider's
