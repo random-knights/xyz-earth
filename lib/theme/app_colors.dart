@@ -1,6 +1,6 @@
 import 'package:flutter/painting.dart';
 
-/// Minimal colour tokens inlined from the private `rk_branding` package.
+/// Minimal color tokens inlined from the private `rk_branding` package.
 ///
 /// The standalone globe references only these five `AppColors` constants (the
 /// score rings + the health-history row). The full brand palette and brand

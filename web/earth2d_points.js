@@ -4,7 +4,7 @@
  * Consumes the LIVE point contract READ-ONLY: an EarthPointSet bridge payload
  * { palette, domain, valueMin, valueMax, units, label, caption, isLive,
  *   points:[ {lat, lon, value, label?, count?} ] }.
- * Markers are sized/coloured by value, horizon-culled on globe projections, and
+ * Markers are sized/colored by value, horizon-culled on globe projections, and
  * clusters (count>1) draw larger with a ring + a "browse in Data View" snapshot
  * path — mirroring the live point renderer + EarthScalarPoint.markerScale curve
  * (0.4 + 0.6*sqrt(normalize(value))).
@@ -62,8 +62,8 @@
   }
 
   // Draw the point set; return [{x,y,r,point}] for hit-testing (nearest-first by
-  // larger markers last so clicks favour the visually-topmost).
-  // Trace a marker path centred at (x,y) with "radius" r (half-extent). Default
+  // larger markers last so clicks favor the visually-topmost).
+  // Trace a marker path centered at (x,y) with "radius" r (half-extent). Default
   // is a circle; 'diamond' (boats) is a 4-point rhombus of the SAME extent so the
   // marker size is unchanged. Unknown shapes fall back to a circle.
   function markerPath(ctx, shape, x, y, r) {
@@ -96,8 +96,8 @@
     { id: 'geo', label: 'GEO', rgb: [180, 130, 240], radiusFactor: 1.7, tilt: 0.22, inclinationDeg: 18, altLowKm: 30000, altHighKm: 1e12 }
   ];
 
-  // Colour by orbital BAND — LEO cyan, MEO amber/gold, GEO violet (lock-step with
-  // the ring-spec colours).
+  // Color by orbital BAND — LEO cyan, MEO amber/gold, GEO violet (lock-step with
+  // the ring-spec colors).
   function bandColor(altKm) {
     if (altKm <= 2000) return [90, 200, 250];   // LEO
     if (altKm <= 30000) return [240, 190, 70];   // MEO
@@ -111,7 +111,7 @@
     return km < rings[0].altHighKm ? rings[0] : rings[rings.length - 1];
   }
 
-  // Draw one concentric TILTED ELLIPSE ring centred on the disc: semi-major
+  // Draw one concentric TILTED ELLIPSE ring centered on the disc: semi-major
   // a = discRadius × radiusFactor, semi-minor b = a × tilt (the foreshorten of a
   // ring seen at an angle). FRONT (near) arc solid + bright, BACK (far) arc
   // dashed + dim — the 2D analogue of the globe depth-occluding the ring's back.
@@ -133,7 +133,7 @@
     ctx.stroke();
   }
 
-  // A named satellite riding its ring: front = solid + labelled; back = dim, no
+  // A named satellite riding its ring: front = solid + labeled; back = dim, no
   // label (it is occluded behind the globe).
   function drawSat(ctx, x, y, rgb, label, front) {
     ctx.beginPath(); ctx.arc(x, y, front ? 3.6 : 2.4, 0, 6.2832);
@@ -151,7 +151,7 @@
     ctx.restore();
   }
 
-  // Elevated LEO/MEO/GEO orbit rings: three concentric TILTED ELLIPSES centred on
+  // Elevated LEO/MEO/GEO orbit rings: three concentric TILTED ELLIPSES centered on
   // the disc, with the named satellites riding their band's ellipse at the
   // AZIMUTH of their sub-satellite point (so placement tracks rotation + is
   // roughly real, not random). Redrawn against the disc each frame, so a
@@ -167,7 +167,7 @@
     var Rdisc = projection.scale ? projection.scale() : Math.min(cx, cy);
     if (!isGlobe) {
       // Full-frame map (equirectangular / mercator / …): no disc to ring around —
-      // draw the named sats as plain labelled dots at their map position.
+      // draw the named sats as plain labeled dots at their map position.
       for (var j = 0; j < pts.length; j++) {
         var fp = pts[j];
         var fs = projection([fp.lon, fp.lat]);
@@ -214,7 +214,7 @@
       var t = normalize(p.value, lo, hi);
       var cluster = (p.count || 1) > 1;
       // Item 5: a folded-in biodiversity richness dot draws LARGER (~1.7x) and in
-      // an ALT colour-scale (`mag`) so it reads distinctly from the host Protected
+      // an ALT color-scale (`mag`) so it reads distinctly from the host Protected
       // Areas dots (teal).
       var isBio = !!p.bio;
       // A1: RADIUS = diameter/2 of the shared curve (identical to Cesium px).

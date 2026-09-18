@@ -230,7 +230,7 @@
   try { loadLandMask(); } catch (e) {/* ignore */}
 
   // ---- Bilinear sample of an earth.scalarfield.v1 grid at (lon,lat). ---------
-  //      lon wraps; lat clamps; NaN/null neighbours are dropped from the blend;
+  //      lon wraps; lat clamps; NaN/null neighbors are dropped from the blend;
   //      all-missing -> null. Mirrors the live renderer's _sampleData exactly.
   function sampleGrid(grid, lon, lat) {
     var nx = grid.nx, ny = grid.ny, vals = grid.values;
@@ -329,7 +329,7 @@
     // Out-of-domain pixels (SST on land, AQI on ocean) are dropped via the mask.
     var domain = opts.domain || (grid && grid.domain) || 'global';
     // Item 8: density-style fields render as a CRISP choropleth — nearest cell
-    // sampling (hard edges) + discrete colour classes — not a smooth blob.
+    // sampling (hard edges) + discrete color classes — not a smooth blob.
     var choropleth = !!(opts.choropleth || (grid && grid.choropleth));
     var choroSteps = (grid && grid.choroplethSteps) || opts.choroplethSteps || 9;
     // SPARSE/ALERT layers value-gate so no-stress cells go transparent (no

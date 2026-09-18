@@ -176,7 +176,7 @@ abstract final class EarthOrbitPropagator {
     final ye = -x * math.sin(gmst) + y * math.cos(gmst);
     final ze = z;
     var lon = math.atan2(ye, xe) * _rad2deg;
-    lon = ((lon + 180) % 360 + 360) % 360 - 180; // normalise to [-180,180)
+    lon = ((lon + 180) % 360 + 360) % 360 - 180; // normalize to [-180,180)
     final lat = math.atan2(ze, math.sqrt(xe * xe + ye * ye)) * _rad2deg;
     final altKm = math.sqrt(x * x + y * y + z * z) - _kEarthRadiusKm;
     return EarthSatellitePosition(latDeg: lat, lonDeg: lon, altitudeKm: altKm);

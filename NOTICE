@@ -65,7 +65,7 @@ Bundled vendored JavaScript (web/earth2d/vendor)
 
 Inlined code slices
 -------------------
-- lib/theme/app_colors.dart inlines five colour constants (green, kitt,
+- lib/theme/app_colors.dart inlines five color constants (green, kitt,
   textLight, cardDark, cardPurp) from the private rand0m `rk_branding` package,
   so the open viewer builds with no private dependency. The rand0m brand
   identity and the full palette remain reserved.

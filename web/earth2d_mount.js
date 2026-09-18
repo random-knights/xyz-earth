@@ -36,7 +36,7 @@
   // ── Solid-globe palette (item 10b) — DEVICE-PASS TUNABLE. A solid dark globe
   // (nullschool benchmark): an opaque ocean fill over the whole sphere, land a
   // touch lighter so continents read, and crisp light coastline / faint country
-  // borders. Kept neutral-dark (no blue cast) per the owner's base-colour note;
+  // borders. Kept neutral-dark (no blue cast) per the owner's base-color note;
   // the sphere reads against the black space via the limb outline. The base is
   // OPAQUE and drawn fresh every frame so a rotate never shows transparency gaps
   // and an overlay's missing cells fall back to ocean/land tone, not a black hole.
@@ -44,7 +44,7 @@
   var LAND_FILL = '#20232a';
   var COAST_LINE = 'rgba(200,212,230,0.72)';
   var BORDER_LINE = 'rgba(155,175,205,0.26)';
-  // Item 9: rivers in a cool blue, distinct from coast/border greys, kept light
+  // Item 9: rivers in a cool blue, distinct from coast/border grays, kept light
   // enough to read over any overlay yet not compete with the flow animation.
   var RIVER_LINE = 'rgba(120,180,225,0.5)';
   var GRATICULE_LINE = 'rgba(140,160,190,0.09)';
@@ -52,7 +52,7 @@
 
   // SIZE/CENTER PARITY (item 1): the orthographic globe radius as a fraction of
   // the half-min-dimension. The Cesium default camera frames the globe with a
-  // small margin; 1.0 == edge-to-edge (the old behaviour). Device-tune this one
+  // small margin; 1.0 == edge-to-edge (the old behavior). Device-tune this one
   // constant to kill any 2D<->3D size jump. Applied to globe projections only.
   // The Cesium viewer uses its DEFAULT camera (no setView) — Cesium frames the
   // globe with DEFAULT_VIEW_FACTOR 0.5, i.e. it zooms out 1.5x, so the 3D globe
@@ -396,7 +396,7 @@
   }
 
   // My-location neon marker: an expanding sonar pulse ring + a steady halo + a
-  // bright centre dot at lat/lon (front hemisphere only). Sized in BACKING px so
+  // bright center dot at lat/lon (front hemisphere only). Sized in BACKING px so
   // it reads on hi-dpi.
   function drawMyLocation(h, ctx) {
     var m = h.myLoc;
@@ -414,7 +414,7 @@
     // Steady halo ring.
     ctx.beginPath(); ctx.arc(s[0], s[1], 9 * dpr, 0, 6.2832);
     ctx.strokeStyle = 'rgba(80,255,180,0.95)'; ctx.lineWidth = 2.5 * dpr; ctx.stroke();
-    // Bright centre dot.
+    // Bright center dot.
     ctx.beginPath(); ctx.arc(s[0], s[1], 4 * dpr, 0, 6.2832);
     ctx.fillStyle = 'rgba(180,255,225,0.98)'; ctx.fill();
   }
@@ -448,7 +448,7 @@
     // Item A — up to THREE channels: WIND always (land + ocean); CURRENT and
     // WAVE on OCEAN ONLY, each only if its grid is available. Probe grids are
     // loaded independent of the animate slot; fall back to the active flow grid
-    // (legacy single-channel behaviour) when no probe grids are set yet.
+    // (legacy single-channel behavior) when no probe grids are set yet.
     var probe = h.probe || {};
     var activeEng = h.flow.active ? h.flow.engine : null;
     var activeKind = activeEng ? (activeEng.flowKind || 'wind') : null;
@@ -720,7 +720,7 @@
       if (down && down.id === e.pointerId) { down = null; h.dragging = false; }
     });
     // WHEEL ZOOM (parity with the Cesium dolly). Exponential toward the globe
-    // centre, clamped to [ZOOM_MIN, ZOOM_MAX] of the default 2D<->3D-matched
+    // center, clamped to [ZOOM_MIN, ZOOM_MAX] of the default 2D<->3D-matched
     // framing. preventDefault so the page doesn't scroll under the globe.
     h.canvas.addEventListener('wheel', function (e) {
       // Overlay box open -> do NOT zoom (and do NOT preventDefault) so the wheel

@@ -94,7 +94,7 @@ class _EarthHealthHistoryRowState extends State<EarthHealthHistoryRow> {
   Color _deltaColor(double? v) =>
       v == null ? Colors.white38 : (v < 0 ? EarthScoreColors.red : EarthScoreColors.green);
 
-  /// Chip keys: Global first, then each domain present in the data (labelled).
+  /// Chip keys: Global first, then each domain present in the data (labeled).
   List<({String key, String label})> get _chips => [
         (key: EarthHealthHistory.globalKey, label: 'Global'),
         for (final id in _history.domainIds)
@@ -340,7 +340,7 @@ class _EarthHealthHistoryRowState extends State<EarthHealthHistoryRow> {
     final spots = <FlSpot>[
       for (var i = 0; i < series.length; i++) FlSpot(i.toDouble(), series[i].value),
     ];
-    // 5-stop score bands behind the line (reuse the gauge's band colours).
+    // 5-stop score bands behind the line (reuse the gauge's band colors).
     List<HorizontalRangeAnnotation> bands() => [
           for (final b in const [[0.0, 35.0], [35.0, 50.0], [50.0, 70.0], [70.0, 90.0], [90.0, 100.0]])
             HorizontalRangeAnnotation(

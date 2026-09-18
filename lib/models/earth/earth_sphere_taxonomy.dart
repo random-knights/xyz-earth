@@ -276,7 +276,7 @@ abstract final class EarthLayerSlotResolver {
   /// Item 5: point layers WITHHELD from the annotation picker. `biodiversity-
   /// habitat` is no longer a standalone selectable dot layer — its representative
   /// richness points are folded INTO the Protected Areas annotation as larger,
-  /// alt-colour dots (build-time merge). It REMAINS in [EarthAnimatedLayerIds.
+  /// alt-color dots (build-time merge). It REMAINS in [EarthAnimatedLayerIds.
   /// point] (renderKind / health-score / governance bindings untouched); only the
   /// annotation picker hides it.
   static const Set<String> annotationPickerWithheld = {

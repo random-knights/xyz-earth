@@ -177,7 +177,7 @@
     // TRAIL-FADE on a TRANSPARENT layer: fade existing trails toward transparent
     // (destination-out) rather than painting a dark wipe. The mount composites
     // this layer OVER the scalar heatmap base each frame, so a source-over dark
-    // fade would dim the heatmap underneath (the old either/or behaviour). Faded
+    // fade would dim the heatmap underneath (the old either/or behavior). Faded
     // every frame as before; advection is still gated on the motion budget.
     ctx.globalCompositeOperation = 'destination-out';
     ctx.fillStyle = 'rgba(0,0,0,' + fade + ')';
@@ -241,7 +241,7 @@
     ctx.globalCompositeOperation = 'source-over';
   };
   // Horizon cull for globe projections: a point is on the near face when its
-  // angular distance from the projection centre < 90deg. For full-frame
+  // angular distance from the projection center < 90deg. For full-frame
   // projections the projection's own clip handles visibility, so default true.
   Engine.prototype._onFront = function (lon, lat) {
     var r = this.projection.rotate ? this.projection.rotate() : null;

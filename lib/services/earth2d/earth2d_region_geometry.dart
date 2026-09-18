@@ -8,7 +8,7 @@
 // do NOT copy that JS array out of the shim — instead this Dart-owned model is
 // the source of truth, and the centroid lat/lon is passed to the 2D shim through
 // the bridge (Earth2dBridge.setRegion). The values are common-knowledge
-// continent/macro-region centres and are kept parity-matched with the Cesium
+// continent/macro-region centers and are kept parity-matched with the Cesium
 // REGION_CENTROIDS so selecting a region focuses the SAME place on both
 // renderers.
 //

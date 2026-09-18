@@ -12,15 +12,15 @@ import 'package:xyz_earth/theme/app_colors.dart';
 /// - [EarthRegionalScoreHalfRing] — a radial HALF-ring for the REGIONAL Health
 ///   Score (a specific region; never the global aggregate).
 ///
-/// Both render the score number, a band-coloured arc, a label, and an
+/// Both render the score number, a band-colored arc, a label, and an
 /// estimation "i" affordance (tap → [onInfoTap], e.g. the managed estimation
-/// explainer box). Colours come from the rk_branding tokens; the arc colour is
+/// explainer box). Colors come from the rk_branding tokens; the arc color is
 /// the health band so it reads honestly as the score moves.
 
 /// The 5-stop health-score ramp — the SINGLE source of truth shared by the
-/// Globe rings AND the Data View, so the same value reads the same colour in
+/// Globe rings AND the Data View, so the same value reads the same color in
 /// BOTH views. red <35 · orange 35–50 · yellow 50–70 · green 70–90 · neon ≥90;
-/// neutral grey when unknown (null). Thresholds MUST stay identical across
+/// neutral gray when unknown (null). Thresholds MUST stay identical across
 /// views (do not fork). Score hues are deliberately DISTINCT from the earth+
 /// FILTER palette (peach/purple/pink/blue/kitt) — and score-red is its own red,
 /// NEVER kitt, so a low score can never read as an active filter.
@@ -30,11 +30,11 @@ abstract final class EarthScoreColors {
   static const yellow = Color(0xFFE6B73A); // 50–70
   static const green = Color(0xFF5BA45F); // 70–90
   static const neon = Color.fromRGBO(105, 219, 136, 1); // ≥90
-  static const unknown = Color(0xFF878D97); // null — neutral grey
+  static const unknown = Color(0xFF878D97); // null — neutral gray
 }
 
 /// Health-band accent for a 0–100 score (shared by both rings AND the Data View
-/// via [EarthScoreColors]). Accepts null → grey so one helper covers every call
+/// via [EarthScoreColors]). Accepts null → gray so one helper covers every call
 /// site (the non-null double rings, the nullable composite score in the Data View).
 Color earthScoreBandColor(num? score) {
   if (score == null) return EarthScoreColors.unknown;
@@ -218,10 +218,10 @@ class EarthDualRadialScoreWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // LOCKDOWN (#5): the two GLOBE RINGS now read the 4-stop health-band ramp
-    // ([earthScoreBandColor]) — the SAME colour the Data View bars + the gauge
+    // ([earthScoreBandColor]) — the SAME color the Data View bars + the gauge
     // value use — so a ring and its bar match at the same value (was the fixed
-    // periwinkle/sage identity colours). Global vs Regional stays obvious from
-    // the outer/inner position, the G/R centre tags, and the labels.
+    // periwinkle/sage identity colors). Global vs Regional stays obvious from
+    // the outer/inner position, the G/R center tags, and the labels.
     final gBand = earthScoreBandColor(globalScore);
     final rBand = earthScoreBandColor(regionalScore);
     return Column(
@@ -284,7 +284,7 @@ class EarthDualRadialScoreWidget extends StatelessWidget {
   }
 }
 
-/// Centre value for the dual-radial score: a small colour-keyed tag (G / R) +
+/// Center value for the dual-radial score: a small color-keyed tag (G / R) +
 /// the score, so the stacked numbers can't be confused for one another.
 class _EarthDualCenterValue extends StatelessWidget {
   const _EarthDualCenterValue({
@@ -533,7 +533,7 @@ class _EarthHalfRingPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final stroke = size.width * 0.1;
-    // Top semicircle: centre on the bottom edge, arc from π (left) to 2π (right).
+    // Top semicircle: center on the bottom edge, arc from π (left) to 2π (right).
     final center = Offset(size.width / 2, size.height - stroke);
     final radius = size.width / 2 - stroke / 2 - 2;
     final arcRect = Rect.fromCircle(center: center, radius: radius);

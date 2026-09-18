@@ -1,7 +1,7 @@
 # Earth base-map outline data
 
 These vector files are the **base-map cartography** for the Simple Outline
-Globe (clean dark globe + light-grey coastline/admin-0 outlines). They are
+Globe (clean dark globe + light-gray coastline/admin-0 outlines). They are
 benign, standard base cartography — NOT the sensitive Countries-data /
 protected-area boundary concern (no per-country attributes are surfaced; these
 are coastline + admin-0 outline polylines only).
@@ -43,7 +43,7 @@ ring LineStrings. Vectors only — NOT the bundled `web/cesium` NaturalEarthII
 raster (which stays unused; the outline globe is vector-only, no imagery).
 
 Served from the web root (`web/earth/`) and loaded by the Cesium attach helper
-(`web/index.html`) as light-grey polylines over a clean deep-ocean globe. No
+(`web/index.html`) as light-gray polylines over a clean deep-ocean globe. No
 satellite imagery or terrain tiles are streamed by default. (`ne_110m_land.json`
 is a build input for the mask, not a globe overlay.)
 
